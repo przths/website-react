@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const HomePageContainer = styled.div`
-  background-color: #2b3036;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #2b3036;
   height: 100vh;
 `
 

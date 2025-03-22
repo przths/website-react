@@ -29,7 +29,7 @@ const AboutMeButton = (props) => {
 
 const HomeHeader = () => {
     return (
-      <Navbar className="bg-body-tertiary" data-bs-theme="dark">
+      <Navbar>
         <Container>
           <Navbar.Brand href="#home">
             <img
