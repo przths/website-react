@@ -13,3 +13,7 @@
 .green-text {
     color: #1db954;
 }
+
+.d-flex {
+    min-width: 500px;
+}
