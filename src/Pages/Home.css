@@ -1,3 +1,15 @@
 .fill { 
     min-height: 80%;
 }
+
+.large-heading {
+    font-size: 75px;
+}
+
+.memoji-size {
+    font-size: 300px;
+}
+
+.green-text {
+    color: #1db954;
+}
