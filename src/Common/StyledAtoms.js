@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const HomePageContainer = styled.div`
-  background-color: #ffffff;
-  color: #2b3036;
+  transition: background-color 0.5s ease;
+  background-color: ${props => props.backgroundColor};
+  color: ${props => props.textColor};
   height: 100vh;
 `
 
@@ -65,6 +66,7 @@ export const NavButtonContainer = styled.button`
   font-weight: 600;
   font-size: 1rem;
   transition: 0.3s;
+  color: ${props => props.textColor};
   &:hover {
     color: #1db954;
   }

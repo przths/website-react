@@ -36,6 +36,9 @@ const HomePage = () => {
 	const [displayedLastName, setDisplatedLastName] = useState("");
 	const [displayedJobTitle, setDisplatedJobTitle] = useState("");
 	const [selectedImage, setSelectedImage] = useState(null);
+	const [darkMode, setDarkMode] = useState(false);
+	const [textColor, setTextColor] = useState();
+	const [backgroundColor, setBackgroundColor] = useState();
 
 	useEffect(() => {
 		const choices = [Me, Meditation, Laugh, Surprise, Thinking];
@@ -45,9 +48,19 @@ const HomePage = () => {
 		}
 	}, []);
 
+	useEffect(() => {
+		if (darkMode) {
+			setTextColor("#ffffff");
+			setBackgroundColor("#2b3036");
+		} else {
+			setTextColor("#2b3036");
+			setBackgroundColor("#ffffff");
+		}
+	}, [darkMode]);
+
 	return (
-		<HomePageContainer>
-			<HomeHeader/>
+		<HomePageContainer textColor={textColor} backgroundColor={backgroundColor}>
+			<HomeHeader textColor={textColor} setDarkMode={setDarkMode} />
 			<div class='d-flex flex-row justify-content-around fill'>
 				<div class="d-flex my-auto align-items-stretch">
 					<div class='d-flex flex-column'>

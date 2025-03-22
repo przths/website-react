@@ -1,7 +1,7 @@
 import { 
   Nav,
   Navbar,
-  Container 
+  Container, 
 } from 'react-bootstrap';
 import CloudMe from "../Images/cloudme.png";
 import {  
@@ -27,13 +27,14 @@ const AboutMeButton = (props) => {
   );
 }
 
-const HomeHeader = () => {
+const HomeHeader = ({ textColor, setDarkMode }) => {
     return (
       <Navbar>
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand>
             <img
               src={CloudMe}
+              onClick={() => setDarkMode((darkMode) => !darkMode)}
               width="75"
               height="75"
               className="d-inline-block align-top"
@@ -41,10 +42,10 @@ const HomeHeader = () => {
             />
           </Navbar.Brand>
           <Nav className="align-middle justify-content-end">
-            <NavButton onClick={() => alert('clicked!')}>Portfolio</NavButton>
-            <NavButton>Blog</NavButton>
-            <NavButton>Resume</NavButton>
-            <AboutMeButton>About me</AboutMeButton>
+            <NavButton textColor={textColor}>Portfolio</NavButton>
+            <NavButton textColor={textColor}>Blog</NavButton>
+            <NavButton textColor={textColor}>Resume</NavButton>
+            <AboutMeButton textColor={textColor}>About me</AboutMeButton>
           </Nav>
         </Container>
       </Navbar>
