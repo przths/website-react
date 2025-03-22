@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
-export const PageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  min-height: 100vh;
+export const HomePageContainer = styled.div`
+  background-color: #2b3036;
+  color: #ffffff;
+  height: 100vh;
 `
 
 export const HeaderContainer = styled.div`
@@ -29,8 +28,8 @@ export const HeaderContainer = styled.div`
 `;
 
 export const AboutMeButtonContainer = styled.button`
-  --btn-color: #008080;
-  --btn-bg: #FFFDD0;
+  --btn-color: #212121;
+  --btn-bg: #1db954;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -67,7 +66,7 @@ export const NavButtonContainer = styled.button`
   font-size: 1rem;
   transition: 0.3s;
   &:hover {
-    color: #FFFDD0;
+    color: #1db954;
   }
 `
 
