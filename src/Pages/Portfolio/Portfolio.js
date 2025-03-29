@@ -2,22 +2,23 @@ import PageHeader from "../../Components/PageHeader";
 import "./Portfolio.css";
 import { SimpleButtonSelect } from "../../Common/StyledAtoms";
 import { useEffect, useState } from "react";
-import cloudMe from "../../Images/cloudme.png";
-import key from "../../Images/key.png";
+import lockKey from "../../Images/lockkey.png";
+import search from "../../Images/mag.png";
+import globe from "../../Images/globe.png";
+import { CYPHER_IT_PROJECT_DESCRIPTION, PERSONAL_WEBSITE_PROJECT_DESCRIPTION, WEB_CRAWLER_PROJECT_DESCRIPTION } from "../../Common/Content";
+import { CYPHER_IT_GITHUB_URL, PERSONAL_WEBSITE_GITHUB_URL, WEB_CRAWLER_GITHUB_URL } from "../../Common/Links";
 
-const ProjectPanel = ({ imageSrc, title, body, footer }) => {
+const ProjectPanel = ({ imageSrc, title, body, href }) => {
     return (
-        <div class="card mb-5">
-            <div class="row g-0">
-                <div class="col-md-3">
-                    <img src={imageSrc} class="project-img img-fluid rounded-start" alt="..."/>
-                </div>
-                <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">{title}</h5>
-                    <p class="card-text">{body}</p>
-                    <p class="card-text"><small class="text-muted">{footer}</small></p>
-                </div>
+        <div class="card">
+            <div class="d-flex justify-content-center">
+                <img src={imageSrc} class="col-md-2 my-auto project-img" alt="..."/>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">{title}</h5>
+                        <p class="card-text">{body}</p>
+                        <a href={href} target="_blank" class="card-link">GitHub Repository</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -39,7 +40,7 @@ const PortfolioPage = () => {
     return (
         <PageHeader>
             <div class='d-flex flex-direction justify-content-around fill m-5'>
-                <div class="d-flex flex-column">
+                <div class="d-flex flex-column left-panel">
                     <h5 class="mb-2 title-color">
                         <strong>
                             My Portfolio
@@ -62,10 +63,22 @@ const PortfolioPage = () => {
                 </div>
                 <div class="mx-auto my-auto text-section align-items-stretch">
                     <ProjectPanel 
-                        imageSrc={key}
+                        imageSrc={globe}
+                        title="My Website"
+                        body={PERSONAL_WEBSITE_PROJECT_DESCRIPTION}
+                        href={PERSONAL_WEBSITE_GITHUB_URL}
+                    />
+                    <ProjectPanel 
+                        imageSrc={lockKey}
                         title="Cypher it!"
-                        body="This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
-                        footer="Last updated 3 mins ago"
+                        body={CYPHER_IT_PROJECT_DESCRIPTION}
+                        href={CYPHER_IT_GITHUB_URL}
+                    />
+                    <ProjectPanel 
+                        imageSrc={search}
+                        title="Web Crawler"
+                        body={WEB_CRAWLER_PROJECT_DESCRIPTION}
+                        href={WEB_CRAWLER_GITHUB_URL}
                     />
                 </div>
             </div>
