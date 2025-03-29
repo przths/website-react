@@ -41,24 +41,24 @@ const PortfolioPage = () => {
         <PageHeader>
             <div class='d-flex flex-direction justify-content-around fill m-5'>
                 <div class="d-flex flex-column left-panel">
-                    <h5 class="mb-2 title-color">
+                    <h4 class="mb-2 title-color">
                         <strong>
                             My Portfolio
                         </strong>
-                    </h5>
+                    </h4>
                     <SimpleButtonSelect 
                         onClick={() => {
                             setProjects(true);
                         }}
                     >
-                        { projects ? <strong>Projects</strong> : 'Projects' }
+                        { projects ? <h5><strong>Projects</strong></h5> : 'Projects' }
                     </SimpleButtonSelect>
                     <SimpleButtonSelect
                         onClick={() => {
                             setPaintings(true);
                         }}
                     >
-                        { paintings ? <strong>Paintings</strong> : 'Paintings' }
+                        { paintings ? <h5><strong>Paintings</strong></h5> : 'Paintings' }
                     </SimpleButtonSelect>
                 </div>
                 <div class="mx-auto my-auto text-section align-items-stretch">

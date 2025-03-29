@@ -75,8 +75,8 @@ export const SimpleButtonSelect = styled.button`
     background: none;
     border: none;
     padding: 0px;
-    margin-bottom: 5px;
     text-align: left;
+    font-size: 1rem;
     cursor: pointer;
     color: ${props => props.textColor};
     &:hover {
