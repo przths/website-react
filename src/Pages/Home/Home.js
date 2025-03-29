@@ -1,12 +1,11 @@
 import './Home.css';
 import { useEffect, useState } from 'react';
-import HomeHeader from "../Components/HomeHeader";
-import { HomePageContainer } from "../Common/StyledAtoms";
-import Me from "../Images/me.png";
-import Meditation from "../Images/meditation.png";
-import Laugh from "../Images/laugh.png";
-import Surprise from "../Images/surprise.png";
-import Thinking from "../Images/thinking.png";
+import Me from "../../Images/me.png";
+import Meditation from "../../Images/meditation.png";
+import Laugh from "../../Images/laugh.png";
+import Surprise from "../../Images/surprise.png";
+import Thinking from "../../Images/thinking.png";
+import PageHeader from '../../Components/PageHeader';
 
 const TypewriterEffect = ({ text, textClass, displayedText, setDisplayedText, speed = 100 }) => {
   const [index, setIndex] = useState(0);
@@ -36,9 +35,6 @@ const HomePage = () => {
 	const [displayedLastName, setDisplatedLastName] = useState("");
 	const [displayedJobTitle, setDisplatedJobTitle] = useState("");
 	const [selectedImage, setSelectedImage] = useState(null);
-	const [darkMode, setDarkMode] = useState(false);
-	const [textColor, setTextColor] = useState();
-	const [backgroundColor, setBackgroundColor] = useState();
 
 	useEffect(() => {
 		const choices = [Me, Meditation, Laugh, Surprise, Thinking];
@@ -48,19 +44,8 @@ const HomePage = () => {
 		}
 	}, []);
 
-	useEffect(() => {
-		if (darkMode) {
-			setTextColor("#ffffff");
-			setBackgroundColor("#2b3036");
-		} else {
-			setTextColor("#2b3036");
-			setBackgroundColor("#ffffff");
-		}
-	}, [darkMode]);
-
 	return (
-		<HomePageContainer textColor={textColor} backgroundColor={backgroundColor}>
-			<HomeHeader textColor={textColor} setDarkMode={setDarkMode} />
+		<PageHeader>
 			<div class='d-flex flex-direction justify-content-around fill'>
 				<div class="mx-auto my-auto text-section align-items-stretch">
 					<div class='d-flex flex-column text-alignment'>
@@ -121,7 +106,7 @@ const HomePage = () => {
 					}
 				</div>
 			</div>
-		</HomePageContainer>
+		</PageHeader>
 	);
 }
 
