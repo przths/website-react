@@ -1,3 +1,12 @@
 .title-color {
     color: #1db954;
 }
+
+.card {
+    border: 0px;
+}
+
+.project-img {
+    width: 180px;
+    height: 180px;
+}
