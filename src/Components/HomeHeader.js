@@ -12,7 +12,7 @@ import {
 const NavButton = (props) => {
   let onClick = props.onClick;
   return (
-    <Nav.Link class="me-3">
+    <Nav.Link className='my-auto'>
       <NavButtonContainer onClick={onClick} {...props}/>
     </Nav.Link>
   );

@@ -61,10 +61,10 @@ const HomePage = () => {
 	return (
 		<HomePageContainer textColor={textColor} backgroundColor={backgroundColor}>
 			<HomeHeader textColor={textColor} setDarkMode={setDarkMode} />
-			<div class='d-flex flex-row justify-content-around fill'>
-				<div class="d-flex my-auto align-items-stretch">
-					<div class='d-flex flex-column'>
-						<h4>
+			<div class='d-flex flex-direction justify-content-around fill'>
+				<div class="mx-auto my-auto text-section align-items-stretch">
+					<div class='d-flex flex-column text-alignment'>
+						<h4 class="title-size">
 							<TypewriterEffect 
 								text={title}
 								displayedText={displayedTitle} 
@@ -97,7 +97,7 @@ const HomePage = () => {
 							</strong>
 						</h1>
 						<h3 class="mt-4">
-							<strong>
+							<strong class="job-heading">
 								{ (lastName === displayedLastName) &&
 									<TypewriterEffect 
 										text={jobTitle} 
@@ -111,13 +111,11 @@ const HomePage = () => {
 						</h3>
 					</div>
 				</div>
-				<div class="d-flex my-auto align-items-stretch">
+				<div class="mx-auto my-auto align-items-stretch">
 					{selectedImage && 
 						<img
 							src={selectedImage}
-							width="450"
-							height="450"
-							className="d-inline-block align-top"
+							className="image-size d-inline-block align-top"
 							alt="React Bootstrap logo"
 						/>
 					}

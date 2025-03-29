@@ -2,10 +2,6 @@
     min-height: 80%;
 }
 
-.large-heading {
-    font-size: 75px;
-}
-
 .memoji-size {
     font-size: 300px;
 }
@@ -14,6 +10,47 @@
     color: #1db954;
 }
 
-.d-flex {
-    min-width: 510px;
+@media (min-width: 510px) {
+	.image-size {
+		width: 450px;
+		height: 450px;
+	}
+	.title-size {
+		font-size: 21px;
+	}
+	.large-heading {
+		font-size: 75px;
+	}
+	.job-heading {
+		font-size: 23px;
+	}
+	.d-flex {
+		min-width: 510px;
+	}
+}
+
+@media (max-width: 450px) {
+    .flex-direction {
+        flex-direction: column;
+    }
+	.text-section {
+		order: 1;
+		min-height: 300px;
+	}
+	.image-size {
+		width: 250px;
+		height: 250px;
+	}
+	.title-size {
+		font-size: 16px;
+	}
+	.large-heading {
+		font-size: 64px;
+	}
+	.job-heading {
+		font-size: 16px;
+	}
+	.text-alignment {
+		text-align: center;	
+	}
 }

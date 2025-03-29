@@ -5,6 +5,7 @@ export const HomePageContainer = styled.div`
   background-color: ${props => props.backgroundColor};
   color: ${props => props.textColor};
   height: 100vh;
+  width: 100vw;
 `
 
 export const HeaderContainer = styled.div`
@@ -58,17 +59,15 @@ export const NavButtonContainer = styled.button`
   margin:0;
   padding:0;
   cursor: pointer;
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 22px;
   font-weight: 600;
   font-size: 1rem;
   transition: 0.3s;
   color: ${props => props.textColor};
   &:hover {
     color: #1db954;
+  }
+  @media (min-width: 500px) {
+    padding: 14px 22px;
   }
 `
 
