@@ -5,8 +5,8 @@ import {
 } from 'react-bootstrap';
 import CloudMe from "../Images/cloudme.png";
 import {  
-  NavButtonContainer,
-  AboutMeButtonContainer
+	SimpleButton,
+  	AboutMeButtonContainer
 } from '../Common/StyledAtoms';
 import { useNavigate } from 'react-router-dom';
 import { BLOG_PAGE_URL, HOME_PAGE_URL, PORTFOLIO_PAGE_URL, RESUME_PAGE_URL } from '../Common/Constants';
@@ -25,9 +25,9 @@ const NavButton = (props) => {
 	}
 	return (
 		<Nav.Link className='my-auto'>
-			<NavButtonContainer onClick={onClick} {...props}>
+			<SimpleButton onClick={onClick} {...props}>
 				{homePathSet ? 'Home' : props.text}
-			</NavButtonContainer>
+			</SimpleButton>
 		</Nav.Link>
 	);
 }

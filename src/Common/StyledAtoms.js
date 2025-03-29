@@ -53,7 +53,7 @@ export const AboutMeButtonContainer = styled.button`
   }
 `
 
-export const NavButtonContainer = styled.button`
+export const SimpleButton = styled.button`
   background:none;
   border:none;
   margin:0;
@@ -71,3 +71,16 @@ export const NavButtonContainer = styled.button`
   }
 `
 
+export const SimpleButtonSelect = styled.button`
+    background: none;
+    border: none;
+    padding: 0px;
+    margin-bottom: 5px;
+    text-align: left;
+    cursor: pointer;
+    color: ${props => props.textColor};
+    &:hover {
+        color: #000000;
+        font-weight: 600;
+    }   
+`

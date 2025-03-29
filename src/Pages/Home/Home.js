@@ -48,7 +48,7 @@ const HomePage = () => {
 		<PageHeader>
 			<div class='d-flex flex-direction justify-content-around fill'>
 				<div class="mx-auto my-auto text-section align-items-stretch">
-					<div class='d-flex flex-column text-alignment'>
+					<div class='d-flex flex-column left-section text-alignment'>
 						<h4 class="title-size">
 							<TypewriterEffect 
 								text={title}

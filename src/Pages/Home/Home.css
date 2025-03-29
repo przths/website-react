@@ -10,6 +10,7 @@
     color: #1db954;
 }
 
+/* TODO: turn the following into Styled Components to stop CSS leaking into other files */
 @media (min-width: 510px) {
 	.image-size {
 		width: 450px;
@@ -24,7 +25,7 @@
 	.job-heading {
 		font-size: 23px;
 	}
-	.d-flex {
+	.left-section {
 		min-width: 510px;
 	}
 }
