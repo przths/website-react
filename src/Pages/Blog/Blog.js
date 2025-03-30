@@ -1,30 +1,9 @@
 import "./Blog.css";
 import { useEffect, useState } from "react";
 import PageHeader from "../../Components/PageHeader";
-import { GraphQLClient, gql } from "graphql-request";
 import { BlogCard } from "../../Components/Common/Common";
-
-const hygraphCMS = new GraphQLClient(
-    "https://ap-south-1.cdn.hygraph.com/content/cm8udyomx028b07uy1krahpun/master"
-);
-
-const GRAPHQL_QUERY = gql`
-    query {
-        posts {
-            title,
-            summary,
-            coverPhoto {
-                url
-            },
-            publishDate
-        }
-    }
-`
-
-export async function getBlogData(query) {
-    const data = await hygraphCMS.request(query);
-    return data;
-}
+import { getBlogData } from "../../Common/Api";
+import { BLOG_SUMMARY_GRAPHQL_QUERY } from "../../Common/GraphQL";
 
 const BlogPage = () => {
     const [loading, setLoading] = useState(false);
@@ -32,11 +11,13 @@ const BlogPage = () => {
 
     useEffect(() => {
         setLoading(true);
-        getBlogData(GRAPHQL_QUERY)
+        getBlogData(BLOG_SUMMARY_GRAPHQL_QUERY)
             .then((data) => {
-                console.log('zzz data', data);
                 setBlogData(data);
                 setLoading(false);
+            })
+            .catch((error) => {
+                console.error("Error fetching blog data:", error);
             });
     }, []);
 
@@ -48,7 +29,7 @@ const BlogPage = () => {
                 </div>
             }
             {
-                !loading && blogData?.posts?.length == 0 && 
+                !loading && blogData?.posts?.length === 0 && 
                     <div class="d-flex justify-content-center">
                         No blogs to show right now! Once I add some I'll show them here!
                     </div>
@@ -56,12 +37,14 @@ const BlogPage = () => {
             <div class='d-flex flex-wrap mx-auto justify-content-between blog-container mt-5'>
                 {
                     blogData?.posts?.length > 0 &&
-                        blogData.posts.map((post) => {
+                        blogData.posts.map((post, index) => {
                             return (
-                                <BlogCard 
+                                <BlogCard
+                                    key={index}
                                     imageSrc={post.coverPhoto.url}
                                     title={post.title}
                                     body={post.summary}
+                                    slug={post.slug}
                                     publishDate={post.publishDate}
                                 />
                             );
