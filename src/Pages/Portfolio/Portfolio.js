@@ -5,25 +5,9 @@ import { useEffect, useState } from "react";
 import lockKey from "../../Images/lockkey.png";
 import search from "../../Images/mag.png";
 import globe from "../../Images/globe.png";
+import { Card } from "../../Components/Common/Common";
 import { CYPHER_IT_PROJECT_DESCRIPTION, PERSONAL_WEBSITE_PROJECT_DESCRIPTION, WEB_CRAWLER_PROJECT_DESCRIPTION } from "../../Common/Content";
 import { CYPHER_IT_GITHUB_URL, PERSONAL_WEBSITE_GITHUB_URL, WEB_CRAWLER_GITHUB_URL } from "../../Common/Links";
-
-const ProjectPanel = ({ imageSrc, title, body, href }) => {
-    return (
-        <div class="card">
-            <div class="d-flex justify-content-center">
-                <img src={imageSrc} class="col-md-2 my-auto project-img" alt="..."/>
-                <div class="col-md-6">
-                    <div class="card-body">
-                        <h5 class="card-title">{title}</h5>
-                        <p class="card-text">{body}</p>
-                        <a href={href} target="_blank" class="card-link">GitHub Repository</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-}
 
 const PortfolioPage = () => {
     const [projects, setProjects] = useState(true);
@@ -51,30 +35,30 @@ const PortfolioPage = () => {
                             setProjects(true);
                         }}
                     >
-                        { projects ? <h5><strong>Projects</strong></h5> : 'Projects' }
+                        { projects ? <strong>Projects</strong> : 'Projects' }
                     </SimpleButtonSelect>
                     <SimpleButtonSelect
                         onClick={() => {
                             setPaintings(true);
                         }}
                     >
-                        { paintings ? <h5><strong>Paintings</strong></h5> : 'Paintings' }
+                        { paintings ? <strong>Paintings</strong> : 'Paintings' }
                     </SimpleButtonSelect>
                 </div>
                 <div class="mx-auto my-auto text-section align-items-stretch">
-                    <ProjectPanel 
+                    <Card 
                         imageSrc={globe}
                         title="My Website"
                         body={PERSONAL_WEBSITE_PROJECT_DESCRIPTION}
                         href={PERSONAL_WEBSITE_GITHUB_URL}
                     />
-                    <ProjectPanel 
+                    <Card 
                         imageSrc={lockKey}
                         title="Cypher it!"
                         body={CYPHER_IT_PROJECT_DESCRIPTION}
                         href={CYPHER_IT_GITHUB_URL}
                     />
-                    <ProjectPanel 
+                    <Card 
                         imageSrc={search}
                         title="Web Crawler"
                         body={WEB_CRAWLER_PROJECT_DESCRIPTION}
