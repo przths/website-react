@@ -4,7 +4,11 @@ Welcome to the **Personal Website** project! This repository houses the frontend
 
 ---
 
-## 🛠️ Technologies Used
+## 🌐 Production URL
+
+You can view the live version of the website here: [Personal Website - React Frontend](https://przths.github.io/website-react/home)
+
+---
 
 This project leverages the following technologies to deliver a seamless user experience:
 
