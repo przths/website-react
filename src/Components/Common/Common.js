@@ -1,7 +1,6 @@
 import "./Common.css";
 import { formatTimestamp } from "../../Common/Utils";
 import { useNavigate } from "react-router-dom";
-import sanitize from "sanitize-html";
 
 export const Card = ({ imageSrc, title, body, href, publishDate }) => {
     return (
@@ -31,17 +30,14 @@ export const Card = ({ imageSrc, title, body, href, publishDate }) => {
     );
 }
 
-export const BlogCard = ({ imageSrc, title, body, isBodyHTML = false, slug, publishDate }) => {
+export const BlogCard = ({ imageSrc, title, body, slug, publishDate }) => {
     const navigate = useNavigate();
     return (
         <button class="card blog-card-container mb-5" onClick={() => slug && navigate(`/blog/${slug}`)}>
             <img src={imageSrc} class="card-img-top loading" alt="..." />
             <div class="card-body">
                 <h5 class="card-title">{title}</h5>
-                { isBodyHTML ? 
-                    <p class="card-text" dangerouslySetInnerHTML={{__html: sanitize(body)}} /> : 
-                    <p class="card-text">{body}</p> 
-                }
+                <p class="card-text">{body}</p> 
                 <p class="card-text"><small class="text-muted">Published: {formatTimestamp(publishDate)}</small></p>
             </div>
         </button>

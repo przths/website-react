@@ -4,7 +4,8 @@ import { useParams } from "react-router-dom";
 import { getBlogData } from "../../Common/Api";
 import { BLOG_DETAILS_GRAPHQL_QUERY } from "../../Common/GraphQL";
 import PageHeader from "../../Components/PageHeader";
-import { BlogCard } from "../../Components/Common/Common";
+import "../../Common/Typography.css";
+import sanitize from "sanitize-html";
 
 const SingleBlogPage = () => {
     const { slug } = useParams();
@@ -30,17 +31,17 @@ const SingleBlogPage = () => {
                     <div class="spinner-border" role="status" />
                 </div>
             }
-            <div class='d-flex mx-auto justify-content-center mt-5'>
-                { blogData && 
-                    <BlogCard 
-                        imageSrc={blogData.coverPhoto.url}
-                        title={blogData.title}
-                        body={blogData.content.html}
-                        isBodyHTML
-                        publishDate={blogData.publishDate}
-                    />
-                }
-            </div>
+            { blogData && 
+                <div class='d-flex flex-row mx-auto blog-container m-5'>
+                    <img src={blogData.coverPhoto.url} class="card-img-top single-blog-logo loading" alt="..." />
+                    <div class="text-section ms-5">
+                        <h3 className="mb-5">
+                            <strong>{blogData.title}</strong>
+                        </h3>
+                        <p dangerouslySetInnerHTML={{__html: sanitize(blogData.content.html)}} />
+                    </div>
+                </div>
+            }
         </PageHeader>
     );
 }
