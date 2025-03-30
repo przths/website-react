@@ -9,7 +9,7 @@ import {
   	AboutMeButtonContainer
 } from '../Common/StyledAtoms';
 import { useNavigate } from 'react-router-dom';
-import { BLOG_PAGE_URL, HOME_PAGE_URL, PORTFOLIO_PAGE_URL, RESUME_PAGE_URL } from '../Common/Constants';
+import { BASELINE_URL, BLOG_PAGE_URL, HOME_PAGE_URL, PORTFOLIO_PAGE_URL, RESUME_PAGE_URL } from '../Common/Constants';
 
 const NavButton = (props) => {
 	const navigate = useNavigate();
@@ -17,7 +17,7 @@ const NavButton = (props) => {
 	const specifiedPath = props.pathname;
 	const urlPathname = window.location.pathname;
     let homePathSet = false;
-	if (urlPathname === specifiedPath) {
+	if (urlPathname === BASELINE_URL + specifiedPath) {
         homePathSet = true;
 		onClick = () => navigate(HOME_PAGE_URL);
 	} else {
@@ -57,17 +57,17 @@ const HomeHeader = ({ textColor, setDarkMode }) => {
           </Navbar.Brand>
           <Nav className="align-middle justify-content-end">
             <NavButton
-				text="Portfolio"
+                text="Portfolio"
                 textColor={textColor}
                 pathname={PORTFOLIO_PAGE_URL}
             />
-			<NavButton
-				text="Blog"
+            <NavButton
+                text="Blog"
                 textColor={textColor}
                 pathname={BLOG_PAGE_URL}
             />
-			<NavButton
-				text="Resume"
+            <NavButton
+                text="Resume"
                 textColor={textColor}
                 pathname={RESUME_PAGE_URL}
             />

@@ -1,4 +1,5 @@
-export const ROOT_PAGE_URL = '/'
+export const BASELINE_URL = '/website-react';
+export const ROOT_PAGE_URL = `/`
 export const HOME_PAGE_URL = '/home';
 export const PORTFOLIO_PAGE_URL = '/portfolio';
 export const BLOG_PAGE_URL = '/blog';
