@@ -6,7 +6,7 @@ Welcome to the **Personal Website** project! This repository houses the frontend
 
 ## 🌐 Production URL
 
-You can view the live version of the website here: [Personal Website - React Frontend](https://przths.github.io/website-react/home)
+You can view the live version of the website here: [Personal Website - React Frontend](https://przths.github.io/website-react/){:target="_blank"}
 
 ---
 
