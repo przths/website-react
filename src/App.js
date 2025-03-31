@@ -27,7 +27,6 @@ function App() {
   }, []);
 
   window.navigation.addEventListener("navigate", (event) => {
-    console.log('location changed!', event.destination.url.split("/").pop());
     ReactGA.send({
       hitType: "pageview",
       page: event.destination.url.split("/").pop(),

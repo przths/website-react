@@ -15,7 +15,6 @@ const BlogPage = () => {
 
     useEffect(() => {
       setLoading(true);
-      console.log("Fetching blog data...", blogData);
       !blogData && getBlogData(BLOG_SUMMARY_GRAPHQL_QUERY)
         .then((data) => {
             setBlogData(data);
