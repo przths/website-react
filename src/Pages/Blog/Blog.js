@@ -38,7 +38,7 @@ const BlogPage = () => {
                         No blogs to show right now! Once I add some I'll show them here!
                     </div>
             }
-            <div class='d-flex flex-wrap mx-auto justify-content-between blog-container mt-5'>
+            <div class='d-flex flex-wrap mx-auto justify-content-between blog-container mt-3'>
                 {
                     blogData?.posts?.length > 0 &&
                         blogData.posts.map((post, index) => {
