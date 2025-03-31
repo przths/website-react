@@ -1,4 +1,4 @@
-import HomeHeader from "./Header";
+import HomeHeader from "./Header/Header";
 import { useState, useEffect, } from "react";
 import { HomePageContainer } from "../Common/StyledAtoms";
 import { APPLICATION_DARKMODE_KEY } from "../Common/Constants";

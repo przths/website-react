@@ -17,13 +17,10 @@
 		height: 450px;
 	}
 	.title-size {
-		font-size: 21px;
+		font-size: 20px;
 	}
 	.large-heading {
-		font-size: 75px;
-	}
-	.job-heading {
-		font-size: 23px;
+		font-size: 52px;
 	}
 	.left-section {
 		min-width: 510px;
@@ -31,25 +28,26 @@
 }
 
 @media (max-width: 450px) {
-    .flex-direction {
-        flex-direction: column;
-    }
+  .flex-direction {
+    flex-direction: column;
+  }
+  .navbar-brand {
+    margin: 0px;
+  }
 	.text-section {
 		order: 1;
-		min-height: 300px;
+		min-height: 200px;
 	}
 	.image-size {
 		width: 250px;
 		height: 250px;
 	}
 	.title-size {
-		font-size: 16px;
+		font-size: 20px;
 	}
 	.large-heading {
-		font-size: 64px;
-	}
-	.job-heading {
-		font-size: 18px;
+		font-size: 41px;
+    margin: 0px;
 	}
 	.text-alignment {
 		text-align: center;	

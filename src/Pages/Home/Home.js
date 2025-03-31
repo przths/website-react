@@ -6,6 +6,7 @@ import Laugh from "../../Images/laugh.png";
 import Surprise from "../../Images/surprise.png";
 import Thinking from "../../Images/thinking.png";
 import PageHeader from '../../Components/PageHeader';
+import { isMobileDevice } from '../../Common/Utils';
 
 const TypewriterEffect = ({ text, textClass, displayedText, setDisplayedText, speed = 100 }) => {
   const [index, setIndex] = useState(0);
@@ -19,6 +20,7 @@ const TypewriterEffect = ({ text, textClass, displayedText, setDisplayedText, sp
 
       return () => clearTimeout(timer);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, text, speed]);
 
   return <div class={textClass}>{displayedText}</div>;
@@ -27,12 +29,10 @@ const TypewriterEffect = ({ text, textClass, displayedText, setDisplayedText, sp
 const HomePage = () => {
 	const TYPING_SPEED = 50;
 	const title = "Hi there! I'm";
-	const name = "Prathamesh";
-	const lastName = "Jagtap";
+	const name = "Prathamesh.";
 	const jobTitle = "Full-Stack Developer @ Suncorp Group";
 	const [displayedTitle, setDisplatedTitle] = useState("");
 	const [displayedName, setDisplatedName] = useState("");
-	const [displayedLastName, setDisplatedLastName] = useState("");
 	const [displayedJobTitle, setDisplatedJobTitle] = useState("");
 	const [selectedImage, setSelectedImage] = useState(null);
 
@@ -42,61 +42,46 @@ const HomePage = () => {
 		if (selection !== selectedImage) {
 			setSelectedImage(selection);
 		}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
 		<PageHeader>
 			<div class='d-flex flex-direction justify-content-around fill'>
-				<div class="mx-auto my-auto text-section align-items-stretch">
+				<div class="mx-auto my-auto text-section">
 					<div class='d-flex flex-column left-section text-alignment'>
-						<h4 class="title-size">
+						<p class="title-size mb-0">
 							<TypewriterEffect 
 								text={title}
 								displayedText={displayedTitle} 
 								setDisplayedText={setDisplatedTitle} 
 								speed={TYPING_SPEED} 
 							/>
-						</h4>
-						<h1>
-							<strong class='large-heading'>
-								{ (title === displayedTitle) &&
-									<TypewriterEffect 
-										text={name} 
-										displayedText={displayedName} 
-										setDisplayedText={setDisplatedName} 
-										speed={TYPING_SPEED} 
-									/>
-								}
-							</strong>
-						</h1>
-						<h1>
-							<strong class='large-heading'>
-								{ (name === displayedName) &&
-									<TypewriterEffect 
-										text={lastName} 
-										displayedText={displayedLastName} 
-										setDisplayedText={setDisplatedLastName} 
-										speed={TYPING_SPEED} 
-									/>
-								}
-							</strong>
-						</h1>
-						<h3 class="mt-4">
-							<strong class="job-heading">
-								{ (lastName === displayedLastName) &&
-									<TypewriterEffect 
-										text={jobTitle} 
-										textClass="green-text"
-										displayedText={displayedJobTitle} 
-										setDisplayedText={setDisplatedJobTitle} 
-										speed={TYPING_SPEED} 
-									/>
-								}
-							</strong>
-						</h3>
+						</p>
+						<p class='large-heading mb-0'>
+              { (title === displayedTitle) &&
+                <TypewriterEffect 
+                  text={name} 
+                  displayedText={displayedName} 
+                  setDisplayedText={setDisplatedName} 
+                  speed={TYPING_SPEED} 
+                />
+              }
+						</p>
+						<strong class={`title-size ${isMobileDevice() ? "mt-2" : "mt-3"}`}>
+              { (name === displayedName) &&
+                <TypewriterEffect 
+                  text={jobTitle} 
+                  textClass="green-text"
+                  displayedText={displayedJobTitle} 
+                  setDisplayedText={setDisplatedJobTitle} 
+                  speed={TYPING_SPEED} 
+                />
+              }
+            </strong>
 					</div>
 				</div>
-				<div class="mx-auto my-auto align-items-stretch">
+				<div class="mx-auto my-auto">
 					{selectedImage && 
 						<img
 							src={selectedImage}

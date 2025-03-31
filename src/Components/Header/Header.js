@@ -3,40 +3,34 @@ import {
   Navbar,
   Container, 
 } from 'react-bootstrap';
-import CloudMe from "../Images/cloudme.png";
+import CloudMe from "../../Images/cloudme.png";
 import {  
 	SimpleButton,
-  	AboutMeButtonContainer
-} from '../Common/StyledAtoms';
-import { useNavigate } from 'react-router-dom';
-import { BASELINE_URL, BLOG_PAGE_URL, HOME_PAGE_URL, PORTFOLIO_PAGE_URL, RESUME_PAGE_URL } from '../Common/Constants';
+} from '../../Common/StyledAtoms';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ABOUT_ME_PAGE_URL, BLOG_PAGE_URL, HOME_PAGE_URL, PORTFOLIO_PAGE_URL, RESUME_PAGE_URL } from '../../Common/Constants';
+import { isMobileDevice } from '../../Common/Utils';
 
 const NavButton = (props) => {
 	const navigate = useNavigate();
-	let onClick;
+  const location = useLocation();
 	const specifiedPath = props.pathname;
-	const urlPathname = window.location.pathname;
-    let homePathSet = false;
-	if (urlPathname === BASELINE_URL + specifiedPath) {
-        homePathSet = true;
+	const urlPathname = location.pathname;
+
+  let onClick;
+  let homePathSet = false;
+	if (urlPathname === specifiedPath) {
+    homePathSet = true;
 		onClick = () => navigate(HOME_PAGE_URL);
 	} else {
 		onClick = () => navigate(specifiedPath);
 	}
+
 	return (
 		<Nav.Link className='my-auto'>
 			<SimpleButton onClick={onClick} {...props}>
 				{homePathSet ? 'Home' : props.text}
 			</SimpleButton>
-		</Nav.Link>
-	);
-}
-
-const AboutMeButton = (props) => {
-	let onClick = props.onClick;
-	return (
-		<Nav.Link>
-			<AboutMeButtonContainer onClick={onClick} {...props}/>
 		</Nav.Link>
 	);
 }
@@ -55,7 +49,7 @@ const HomeHeader = ({ textColor, setDarkMode }) => {
               alt="React Bootstrap logo"
             />
           </Navbar.Brand>
-          <Nav className="align-middle justify-content-end">
+          <Nav className={`${isMobileDevice() ? 'flex-fill justify-content-center' : 'justify-content-end '}`}>
             <NavButton
                 text="Portfolio"
                 textColor={textColor}
@@ -71,7 +65,11 @@ const HomeHeader = ({ textColor, setDarkMode }) => {
                 textColor={textColor}
                 pathname={RESUME_PAGE_URL}
             />
-            <AboutMeButton>About me</AboutMeButton>
+            <NavButton
+                text="About me"
+                textColor={textColor}
+                pathname={ABOUT_ME_PAGE_URL}
+            />
           </Nav>
         </Container>
       </Navbar>

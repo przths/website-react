@@ -20,12 +20,12 @@ function App() {
     <BrowserRouter basename={BASELINE_URL}>
       <Routes>
         {[ROOT_PAGE_URL, HOME_PAGE_URL].map((path, index) => 
-          <Route path={path} element={<HomePage/>} key={index} />
+          <Route path={path} element={<HomePage />} key={index} />
         )}
-        <Route path={PORTFOLIO_PAGE_URL} element={<PortfolioPage/>} />
-        <Route path={BLOG_PAGE_URL} element={<BlogPage/>}/>
-        <Route path={`${BLOG_PAGE_URL}/:slug`} element={<SingleBlogPage/>}/>
-        <Route path={RESUME_PAGE_URL} element={<ResumePage/>} />
+        <Route path={PORTFOLIO_PAGE_URL} element={<PortfolioPage />} />
+        <Route path={BLOG_PAGE_URL} element={<BlogPage />} />
+        <Route path={`${BLOG_PAGE_URL}/:slug`} element={<SingleBlogPage />} />
+        <Route path={RESUME_PAGE_URL} element={<ResumePage />} />
       </Routes>
     </BrowserRouter>
   );

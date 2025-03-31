@@ -19,5 +19,8 @@ export function formatTimestamp(timestamp) {
     // Return the formatted string
     return `${hours}:${minutes} ${ampm} @ ${day} ${month} ${year}`;
 }
-  
+
+export function isMobileDevice() {
+    return window.innerWidth <= 450;
+}
   
