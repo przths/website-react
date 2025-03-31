@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/website-react/static/css/main.4296bee1.css",
-    "main.js": "/website-react/static/js/main.e6251a1f.js",
+    "main.js": "/website-react/static/js/main.299a35e2.js",
     "static/js/453.ceb3aa79.chunk.js": "/website-react/static/js/453.ceb3aa79.chunk.js",
     "static/media/meditation.png": "/website-react/static/media/meditation.8c993cc2392d0ad1caa5.png",
     "static/media/thinking.png": "/website-react/static/media/thinking.4a321138c42fb65e2124.png",
@@ -15,11 +15,11 @@
     "index.html": "/website-react/index.html",
     "static/media/index.cjs": "/website-react/static/media/index.f6d03137e8c9dd0de04c.cjs",
     "main.4296bee1.css.map": "/website-react/static/css/main.4296bee1.css.map",
-    "main.e6251a1f.js.map": "/website-react/static/js/main.e6251a1f.js.map",
+    "main.299a35e2.js.map": "/website-react/static/js/main.299a35e2.js.map",
     "453.ceb3aa79.chunk.js.map": "/website-react/static/js/453.ceb3aa79.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4296bee1.css",
-    "static/js/main.e6251a1f.js"
+    "static/js/main.299a35e2.js"
   ]
 }
