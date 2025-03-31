@@ -1,4 +1,5 @@
 import './Home.css';
+import ReactGA from "react-ga4";
 import { useEffect, useState } from 'react';
 import Me from "../../Images/me.png";
 import Meditation from "../../Images/meditation.png";
@@ -37,7 +38,12 @@ const HomePage = () => {
 	const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    document.title = "Home";
+    const PAGE_TITLE = "Home";
+    document.title = PAGE_TITLE;
+    ReactGA.send({
+      hitType: "pageview",
+      page: PAGE_TITLE,
+    });
   }, []);
 
 	useEffect(() => {

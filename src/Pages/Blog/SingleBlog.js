@@ -1,4 +1,5 @@
 import "./Blog.css";
+import ReactGA from "react-ga4";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import _ from "lodash";
@@ -16,7 +17,12 @@ const SingleBlogPage = () => {
     const [blogData, setBlogData] = useState(null);
 
     useEffect(() => {
-      document.title = _.startCase(slug);
+      const PAGE_TITLE = _.startCase(slug);
+      document.title = PAGE_TITLE;
+      ReactGA.send({
+        hitType: "pageview",
+        page: PAGE_TITLE,
+      });
     }, [slug]);
 
     useEffect(() => {

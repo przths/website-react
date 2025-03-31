@@ -1,4 +1,5 @@
 import "./Blog.css";
+import ReactGA from "react-ga4";
 import { useEffect, useState } from "react";
 import PageHeader from "../../Components/PageHeader";
 import { BlogCard } from "../../Components/Common/Common";
@@ -10,7 +11,12 @@ const BlogPage = () => {
     const [blogData, setBlogData] = useState(null);
 
     useEffect(() => {
-      document.title = "Blog";
+      const PAGE_TITLE = "Blog";
+      document.title = PAGE_TITLE;
+      ReactGA.send({
+        hitType: "pageview",
+        page: PAGE_TITLE,
+      });
     }, []);
 
     useEffect(() => {

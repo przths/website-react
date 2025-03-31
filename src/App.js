@@ -23,15 +23,7 @@ function App() {
   useEffect(() => {
     // TODO: Move the code to an .env file (for local and production)
     ReactGA.initialize("G-H7Q3553EDM");
-    ReactGA.send({ hitType: "pageview", page: window.location.pathname });
   }, []);
-
-  window.navigation.addEventListener("navigate", (event) => {
-    ReactGA.send({
-      hitType: "pageview",
-      page: event.destination.url.split("/").pop(),
-    });
-  });
 
   return (
     <BrowserRouter basename={BASELINE_URL}>
