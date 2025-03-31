@@ -1,3 +1,4 @@
+import ReactGA from "react-ga4";
 import { 
   Nav,
   Navbar,
@@ -21,14 +22,23 @@ const NavButton = (props) => {
   let homePathSet = false;
 	if (urlPathname === specifiedPath) {
     homePathSet = true;
-		onClick = () => navigate(HOME_PAGE_URL);
+		onClick = () =>  navigate(HOME_PAGE_URL);
 	} else {
 		onClick = () => navigate(specifiedPath);
 	}
 
+  const clickWithAnalytics = () => {
+    ReactGA.event({
+      category: "Navigation Bar",
+      action: "Navigation_Bar_Click",
+      label: homePathSet ? HOME_PAGE_URL : specifiedPath,
+    });
+    onClick();
+  }
+
 	return (
 		<Nav.Link className='my-auto'>
-			<SimpleButton onClick={onClick} {...props}>
+			<SimpleButton onClick={clickWithAnalytics} {...props}>
 				{homePathSet ? 'Home' : props.text}
 			</SimpleButton>
 		</Nav.Link>

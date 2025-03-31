@@ -1,4 +1,5 @@
 import React from "react";
+import ReactGA from "react-ga4";
 import { useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
@@ -19,6 +20,20 @@ import ResumePage from "./Pages/Resume/Resume";
 import AboutMePage from "./Pages/AboutMe/AboutMe";
 
 function App() {
+  useEffect(() => {
+    // TODO: Move the code to an .env file (for local and production)
+    ReactGA.initialize("G-H7Q3553EDM");
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname });
+  }, []);
+
+  window.navigation.addEventListener("navigate", (event) => {
+    console.log('location changed!', event.destination.url.split("/").pop());
+    ReactGA.send({
+      hitType: "pageview",
+      page: event.destination.url.split("/").pop(),
+    });
+  });
+
   return (
     <BrowserRouter basename={BASELINE_URL}>
       <Routes>
