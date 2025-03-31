@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0;url=./" />
+    <meta http-equiv="refresh" content="0;url=./{{path}}" />
+    <script type="text/javascript">
+      var path = window.location.pathname + window.location.search + window.location.hash;
+      window.location.replace(path);
+    </script>
   </head>
   <body>
   </body>
