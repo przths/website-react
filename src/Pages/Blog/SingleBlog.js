@@ -21,16 +21,14 @@ const SingleBlogPage = () => {
 
     useEffect(() => {
         setLoading(true);
-        if (blogData === null) {
-          getBlogData(BLOG_DETAILS_GRAPHQL_QUERY, { slug })
-            .then((data) => {
-                setBlogData(data.posts[0]);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error("Error fetching blog data:", error);
-            });
-        }
+        !blogData && getBlogData(BLOG_DETAILS_GRAPHQL_QUERY, { slug })
+          .then((data) => {
+              setBlogData(data.posts[0]);
+              setLoading(false);
+          })
+          .catch((error) => {
+              console.error("Error fetching blog data:", error);
+          });
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [slug]);
 

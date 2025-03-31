@@ -54,15 +54,15 @@ const HomePage = () => {
 			<div class='d-flex flex-direction justify-content-around fill'>
 				<div class="mx-auto my-auto text-section">
 					<div class='d-flex flex-column left-section text-alignment'>
-						<p class="title-size mb-0">
+						<div class="title-size mb-0">
 							<TypewriterEffect 
 								text={title}
 								displayedText={displayedTitle} 
 								setDisplayedText={setDisplatedTitle} 
 								speed={TYPING_SPEED} 
 							/>
-						</p>
-						<p class='large-heading mb-0'>
+						</div>
+						<div class='large-heading mb-0'>
               { (title === displayedTitle) &&
                 <TypewriterEffect 
                   text={name} 
@@ -71,7 +71,7 @@ const HomePage = () => {
                   speed={TYPING_SPEED} 
                 />
               }
-						</p>
+						</div>
 						<strong class={`title-size ${isMobileDevice() ? "mt-2" : "mt-2"}`}>
               { (name === displayedName) &&
                 <TypewriterEffect 

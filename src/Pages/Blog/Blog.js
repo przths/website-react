@@ -7,7 +7,7 @@ import { BLOG_SUMMARY_GRAPHQL_QUERY } from "../../Common/GraphQL";
 
 const BlogPage = () => {
     const [loading, setLoading] = useState(false);
-    const [blogData, setBlogData] = useState([]);
+    const [blogData, setBlogData] = useState(null);
 
     useEffect(() => {
       document.title = "Blog";
@@ -15,7 +15,8 @@ const BlogPage = () => {
 
     useEffect(() => {
       setLoading(true);
-      getBlogData(BLOG_SUMMARY_GRAPHQL_QUERY)
+      console.log("Fetching blog data...", blogData);
+      !blogData && getBlogData(BLOG_SUMMARY_GRAPHQL_QUERY)
         .then((data) => {
             setBlogData(data);
             setLoading(false);
@@ -40,19 +41,19 @@ const BlogPage = () => {
             }
             <div class='d-flex flex-wrap mx-auto justify-content-between blog-container mt-3'>
                 {
-                    blogData?.posts?.length > 0 &&
-                        blogData.posts.map((post, index) => {
-                            return (
-                                <BlogCard
-                                    key={index}
-                                    imageSrc={post.coverPhoto.url}
-                                    title={post.title}
-                                    body={post.summary}
-                                    slug={post.slug}
-                                    publishDate={post.publishDate}
-                                />
-                            );
-                        })
+                  blogData?.posts?.length > 0 &&
+                      blogData.posts.map((post, index) => {
+                          return (
+                              <BlogCard
+                                  key={index}
+                                  imageSrc={post.coverPhoto.url}
+                                  title={post.title}
+                                  body={post.summary}
+                                  slug={post.slug}
+                                  publishDate={post.publishDate}
+                              />
+                          );
+                      })
                 }
             </div>
         </PageHeader>
