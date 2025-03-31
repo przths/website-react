@@ -4,8 +4,8 @@ export const HomePageContainer = styled.div`
   transition: background-color 0.5s ease;
   background-color: ${props => props.backgroundColor};
   color: ${props => props.textColor};
-  height: 100vh;
   width: 100vw;
+  height: auto;
 `
 
 export const HeaderContainer = styled.div`
@@ -23,9 +23,6 @@ export const HeaderContainer = styled.div`
   transition: 0.3s;
   &:hover {
     box-shadow: 24px 24px 24px 0px rgba(0,0,0,0.2);
-  }
-  @media (max-width: 580px) {
-    max-height: 750px;
   }
 `;
 

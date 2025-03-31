@@ -7,6 +7,8 @@ import { BLOG_DETAILS_GRAPHQL_QUERY } from "../../Common/GraphQL";
 import PageHeader from "../../Components/PageHeader";
 import "../../Common/Typography.css";
 import sanitize from "sanitize-html";
+import { RoundCard } from "../../Components/Common/Common";
+import { formatTimestamp, isMobileDevice } from "../../Common/Utils";
 
 const SingleBlogPage = () => {
     const { slug } = useParams();
@@ -19,7 +21,8 @@ const SingleBlogPage = () => {
 
     useEffect(() => {
         setLoading(true);
-        getBlogData(BLOG_DETAILS_GRAPHQL_QUERY, { slug })
+        if (blogData === null) {
+          getBlogData(BLOG_DETAILS_GRAPHQL_QUERY, { slug })
             .then((data) => {
                 setBlogData(data.posts[0]);
                 setLoading(false);
@@ -27,6 +30,8 @@ const SingleBlogPage = () => {
             .catch((error) => {
                 console.error("Error fetching blog data:", error);
             });
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [slug]);
 
     return (
@@ -37,14 +42,21 @@ const SingleBlogPage = () => {
                 </div>
             }
             { blogData && 
-                <div class='d-flex flex-row mx-auto blog-container m-5'>
-                    <img src={blogData.coverPhoto.url} class="card-img-top single-blog-logo loading" alt="..." />
-                    <div class="text-section ms-5">
-                        <h3 className="mb-5">
+                <div class="d-flex flex-direction mt-3 mb-5">
+                  <RoundCard style={{ 'max-width': `${isMobileDevice() ? '90vw' : '50vw'}`, }}>
+                    <img src={blogData.coverPhoto.url} class="card-img-top blog-card-img loading" alt="..." />
+                    <div class="mt-5">
+                        <h3 className="mb-4">
                             <strong>{blogData.title}</strong>
                         </h3>
                         <p dangerouslySetInnerHTML={{__html: sanitize(blogData.content.html)}} />
+                        <p class="card-text">
+                          <small class="text-muted">
+                            Published: {formatTimestamp(blogData.publishDate)}
+                          </small>
+                        </p>
                     </div>
+                  </RoundCard>
                 </div>
             }
         </PageHeader>
