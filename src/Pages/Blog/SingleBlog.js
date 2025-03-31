@@ -1,6 +1,7 @@
 import "./Blog.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import _ from "lodash";
 import { getBlogData } from "../../Common/Api";
 import { BLOG_DETAILS_GRAPHQL_QUERY } from "../../Common/GraphQL";
 import PageHeader from "../../Components/PageHeader";
@@ -11,6 +12,10 @@ const SingleBlogPage = () => {
     const { slug } = useParams();
     const [loading, setLoading] = useState(false);
     const [blogData, setBlogData] = useState(null);
+
+    useEffect(() => {
+      document.title = _.startCase(slug);
+    }, [slug]);
 
     useEffect(() => {
         setLoading(true);

@@ -1,6 +1,11 @@
 import PageHeader from "../../Components/PageHeader";
+import { useEffect } from "react";
 
 const ResumePage = () => {
+    useEffect(() => {
+        document.title = "Resume";
+    }, []);
+    
     return (
         <PageHeader>
             <div>

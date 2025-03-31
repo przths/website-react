@@ -36,6 +36,10 @@ const HomePage = () => {
 	const [displayedJobTitle, setDisplatedJobTitle] = useState("");
 	const [selectedImage, setSelectedImage] = useState(null);
 
+  useEffect(() => {
+    document.title = "Home";
+  }, []);
+
 	useEffect(() => {
 		const choices = [Me, Meditation, Laugh, Surprise, Thinking];
 		const selection = choices[Math.floor(Math.random() * choices.length)];
@@ -68,7 +72,7 @@ const HomePage = () => {
                 />
               }
 						</p>
-						<strong class={`title-size ${isMobileDevice() ? "mt-2" : "mt-3"}`}>
+						<strong class={`title-size ${isMobileDevice() ? "mt-2" : "mt-2"}`}>
               { (name === displayedName) &&
                 <TypewriterEffect 
                   text={jobTitle} 

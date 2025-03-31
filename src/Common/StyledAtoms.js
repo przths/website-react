@@ -59,8 +59,6 @@ export const SimpleButton = styled.button`
   margin:0;
   padding:0;
   cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
   transition: 0.3s;
   color: ${props => props.textColor};
   &:hover {

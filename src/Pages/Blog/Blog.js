@@ -10,15 +10,19 @@ const BlogPage = () => {
     const [blogData, setBlogData] = useState([]);
 
     useEffect(() => {
-        setLoading(true);
-        getBlogData(BLOG_SUMMARY_GRAPHQL_QUERY)
-            .then((data) => {
-                setBlogData(data);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error("Error fetching blog data:", error);
-            });
+      document.title = "Blog";
+    }, []);
+
+    useEffect(() => {
+      setLoading(true);
+      getBlogData(BLOG_SUMMARY_GRAPHQL_QUERY)
+        .then((data) => {
+            setBlogData(data);
+            setLoading(false);
+        })
+        .catch((error) => {
+            console.error("Error fetching blog data:", error);
+        });
     }, []);
 
     return (

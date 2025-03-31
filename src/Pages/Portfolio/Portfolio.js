@@ -14,6 +14,10 @@ const PortfolioPage = () => {
     const [paintings, setPaintings] = useState(false);
 
     useEffect(() => {
+      document.title = "Portfolio";
+    }, []);
+
+    useEffect(() => {
         paintings && setProjects(false);
     }, [paintings]);
 
