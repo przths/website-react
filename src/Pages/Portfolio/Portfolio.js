@@ -64,7 +64,7 @@ const PortfolioPage = () => {
                   </SimpleButtonSelect>
                 </div>
             </div>
-            <div class="d-flex flex-column portfolio-card-container">
+            <div class="d-flex flex-wrap portfolio-card-container">
               { loading && 
                   <div class="d-flex justify-content-center">
                     <div class="spinner-border" role="status" />
