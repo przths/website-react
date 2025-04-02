@@ -64,7 +64,6 @@ export const MiniRoundCard = styled.div`
 export const RoundCard = styled.div`
   display: flex;
   flex-direction: column;
-  margin: auto;
   padding: 40px;
   border-radius: 50px;
   background-color: white;

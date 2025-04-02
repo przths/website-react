@@ -1,18 +1,24 @@
 .title-color {
-    color: #1db954;
-}
-
-.portfolio-card {
-    border: 0px;
-    margin-bottom: 80px;
+  color: #1db954;
 }
 
 .project-img {
-    width: 100px;
-    height: 100px;
-    margin-right: 20px;
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
 }
 
 .left-panel {
-    min-width: 140px;
+  min-width: 12.5%;
+}
+
+.portfolio-card-container {
+  min-width: 60%;
+}
+
+@media (min-width: 510px) {
+  .portfolio-container {
+    margin: auto;
+    max-width: 65vw;
+  }
 }

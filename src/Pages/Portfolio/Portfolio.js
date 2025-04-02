@@ -2,22 +2,31 @@ import PageHeader from "../../Components/PageHeader";
 import "./Portfolio.css";
 import { SimpleButtonSelect } from "../../Common/StyledAtoms";
 import { useEffect, useState } from "react";
-import lockKey from "../../Images/lockkey.png";
-import search from "../../Images/mag.png";
-import globe from "../../Images/globe.png";
-import { Card } from "../../Components/Common/Common";
-import { CYPHER_IT_PROJECT_DESCRIPTION, PERSONAL_WEBSITE_PROJECT_DESCRIPTION, WEB_CRAWLER_PROJECT_DESCRIPTION } from "../../Common/Content";
-import { CYPHER_IT_GITHUB_URL, PERSONAL_WEBSITE_GITHUB_URL, WEB_CRAWLER_GITHUB_URL } from "../../Common/Links";
+import { RoundCard } from "../../Components/Common/Common";
 import { trackPageView } from "../../Common/Analytics";
+import { isMobileDevice } from "../../Common/Utils";
+import { PORTFOLIO_DATA_GRAPHQL_QUERY } from "../../Common/GraphQL";
+import { getBlogData } from "../../Common/Api";
 
 const PortfolioPage = () => {
     const [projects, setProjects] = useState(true);
     const [paintings, setPaintings] = useState(false);
+    const [portfolio, setPortfolio] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
       const PAGE_TITLE = "Portfolio";
       document.title = PAGE_TITLE;
       trackPageView(PAGE_TITLE);
+      setLoading(true);
+      getBlogData(PORTFOLIO_DATA_GRAPHQL_QUERY)
+        .then((data) => {
+          setLoading(false);
+          setPortfolio(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching portfolio data:", error);
+        });
     }, []);
 
     useEffect(() => {
@@ -30,49 +39,63 @@ const PortfolioPage = () => {
 
     return (
         <PageHeader>
-            <div class='d-flex flex-direction justify-content-around fill m-5'>
-                <div class="d-flex flex-column left-panel">
-                    <h4 class="mb-2 title-color">
-                        <strong>
-                            My Portfolio
-                        </strong>
-                    </h4>
-                    <SimpleButtonSelect 
-                        onClick={() => {
-                            setProjects(true);
-                        }}
-                    >
-                        { projects ? <strong>Projects</strong> : 'Projects' }
-                    </SimpleButtonSelect>
-                    <SimpleButtonSelect
-                        onClick={() => {
-                            setPaintings(true);
-                        }}
-                    >
-                        { paintings ? <strong>Paintings</strong> : 'Paintings' }
-                    </SimpleButtonSelect>
-                </div>
-                <div class="mx-auto my-auto text-section align-items-stretch">
-                    <Card 
-                        imageSrc={globe}
-                        title="My Website"
-                        body={PERSONAL_WEBSITE_PROJECT_DESCRIPTION}
-                        href={PERSONAL_WEBSITE_GITHUB_URL}
-                    />
-                    <Card 
-                        imageSrc={lockKey}
-                        title="Cypher it!"
-                        body={CYPHER_IT_PROJECT_DESCRIPTION}
-                        href={CYPHER_IT_GITHUB_URL}
-                    />
-                    <Card 
-                        imageSrc={search}
-                        title="Web Crawler"
-                        body={WEB_CRAWLER_PROJECT_DESCRIPTION}
-                        href={WEB_CRAWLER_GITHUB_URL}
-                    />
+          <div class={`d-flex portfolio-container justify-content-between ${isMobileDevice() ? 'flex-column mt-4' : 'mt-5'}`}>
+            <div class={`d-flex flex-column left-panel mb-4 ${isMobileDevice() ? 'ms-4' : ''}`}>
+                <h4 class="mb-2 title-color">
+                  <strong>
+                    My Portfolio
+                  </strong>
+                </h4>
+                <div className={`d-flex ${isMobileDevice() ? 'flex-row' : 'flex-column'}`}>
+                  <SimpleButtonSelect 
+                    onClick={() => {
+                        setProjects(true);
+                    }}
+                  >
+                    { projects ? <strong>Projects</strong> : 'Projects' }
+                  </SimpleButtonSelect>
+                  <SimpleButtonSelect
+                    className={`${isMobileDevice() ? 'ms-2' : ''}`}
+                    onClick={() => {
+                        setPaintings(true);
+                    }}
+                  >
+                    { paintings ? <strong>Paintings</strong> : 'Paintings' }
+                  </SimpleButtonSelect>
                 </div>
             </div>
+            <div class="d-flex flex-column portfolio-card-container">
+              { loading && 
+                  <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status" />
+                  </div>
+              }
+              { portfolio?.projects.map((project, index) => {
+                  return (
+                    <RoundCard 
+                      key={index} 
+                      style={{ 'max-width': `${isMobileDevice() ? '90vw' : '50vw'}`}}
+                      className="mx-auto mb-4"
+                    >
+                      <h4 className="mb-4">
+                        {project.projectName}
+                      </h4>
+                      <p>
+                        {project.projectDescription}
+                      </p>
+                      <p class="card-text">
+                        <small class="text-muted">
+                          <a href={project.projectUrl} target="_blank" rel="noopener noreferrer">
+                            GitHub Link
+                          </a>
+                        </small>
+                      </p>
+                    </RoundCard>
+                  );
+                })
+              }
+            </div>
+          </div>
         </PageHeader>
     );
 }

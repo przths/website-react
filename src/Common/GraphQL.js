@@ -28,3 +28,12 @@ export const BLOG_DETAILS_GRAPHQL_QUERY = gql`
         }
     }
 `
+export const PORTFOLIO_DATA_GRAPHQL_QUERY = gql`
+  query {
+    projects {
+      projectName
+      projectDescription
+      projectUrl
+    }
+  }
+`

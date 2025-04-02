@@ -71,7 +71,7 @@ export const SimpleButtonSelect = styled.button`
     border: none;
     padding: 0px;
     text-align: left;
-    font-size: 1rem;
+    font-size: 17px;
     cursor: pointer;
     color: ${props => props.textColor};
     &:hover {

@@ -7,8 +7,9 @@ export function initializeAnalytics() {
 }
 
 export function trackPageView(page) {
-    ReactGA.send({
-        hitType: "pageview",
-        page: page,
-    });
+  if (window.location.hostname === "localhost") return;
+  ReactGA.send({
+      hitType: "pageview",
+      page: page,
+  });
 }
