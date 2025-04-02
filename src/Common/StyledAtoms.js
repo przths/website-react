@@ -51,10 +51,10 @@ export const AboutMeButtonContainer = styled.button`
 `
 
 export const SimpleButton = styled.button`
-  background:none;
-  border:none;
-  margin:0;
-  padding:0;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
   cursor: pointer;
   transition: 0.3s;
   color: ${props => props.textColor};
@@ -69,7 +69,8 @@ export const SimpleButton = styled.button`
 export const SimpleButtonSelect = styled.button`
     background: none;
     border: none;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     text-align: left;
     font-size: 17px;
     cursor: pointer;

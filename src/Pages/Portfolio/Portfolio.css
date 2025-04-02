@@ -9,7 +9,7 @@
 }
 
 .left-panel {
-  min-width: 12.5%;
+  min-width: 18%;
 }
 
 .portfolio-card-container {
@@ -19,6 +19,6 @@
 @media (min-width: 510px) {
   .portfolio-container {
     margin: auto;
-    max-width: 65vw;
+    max-width: 70vw;
   }
 }

@@ -31,15 +31,15 @@ const BlogPage = () => {
     return (
         <PageHeader>
             { loading && 
-                <div class="d-flex justify-content-center">
-                    <div class="spinner-border" role="status" />
-                </div>
+              <div class="d-flex justify-content-center">
+                  <div class="spinner-border" role="status" />
+              </div>
             }
             {
-                !loading && blogData?.posts?.length === 0 && 
-                    <div class="d-flex justify-content-center">
-                        No blogs to show right now! Once I add some I'll show them here!
-                    </div>
+              !loading && blogData?.posts?.length === 0 && 
+                  <div class="d-flex justify-content-center">
+                      No blogs to show right now! Once I add some I'll show them here!
+                  </div>
             }
             <div class='d-flex flex-wrap mx-auto justify-content-between blog-container mt-3'>
                 {

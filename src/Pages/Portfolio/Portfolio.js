@@ -39,34 +39,34 @@ const PortfolioPage = () => {
 
     return (
         <PageHeader>
-          <div class={`d-flex portfolio-container justify-content-between ${isMobileDevice() ? 'flex-column mt-4' : 'mt-5'}`}>
-            <div class={`d-flex flex-column left-panel mb-4 ${isMobileDevice() ? 'ms-4' : ''}`}>
-                <h4 class="mb-2 title-color">
-                  <strong>
-                    My Portfolio
-                  </strong>
-                </h4>
-                <div className={`d-flex ${isMobileDevice() ? 'flex-row' : 'flex-column'}`}>
-                  <SimpleButtonSelect 
-                    onClick={() => {
-                        setProjects(true);
-                    }}
-                  >
-                    { projects ? <strong>Projects</strong> : 'Projects' }
-                  </SimpleButtonSelect>
-                  <SimpleButtonSelect
-                    className={`${isMobileDevice() ? 'ms-2' : ''}`}
-                    onClick={() => {
-                        setPaintings(true);
-                    }}
-                  >
-                    { paintings ? <strong>Paintings</strong> : 'Paintings' }
-                  </SimpleButtonSelect>
-                </div>
+          <div class={`d-flex portfolio-container justify-content-between mt-4 ${isMobileDevice() ? 'flex-column' : ''}`}>
+            <div class={`d-flex flex-column left-panel mb-3 ${isMobileDevice() ? 'ms-4' : 'mt-3'}`}>
+              <h4 class="mb-2 title-color">
+                <strong>
+                  My Portfolio
+                </strong>
+              </h4>
+              <div className={`d-flex ${isMobileDevice() ? 'flex-row' : 'flex-column'}`}>
+                <SimpleButtonSelect 
+                  onClick={() => {
+                      setProjects(true);
+                  }}
+                >
+                  { projects ? <strong>Projects</strong> : 'Projects' }
+                </SimpleButtonSelect>
+                <SimpleButtonSelect
+                  className={`${isMobileDevice() ? 'ms-2' : ''}`}
+                  onClick={() => {
+                      setPaintings(true);
+                  }}
+                >
+                  { paintings ? <strong>Paintings</strong> : 'Paintings' }
+                </SimpleButtonSelect>
+              </div>
             </div>
-            <div class="d-flex flex-wrap portfolio-card-container">
+            <div class="d-flex flex-wrap mx-auto mb-3 portfolio-card-container">
               { loading && 
-                  <div class="d-flex justify-content-center">
+                  <div class="mx-auto">
                     <div class="spinner-border" role="status" />
                   </div>
               }
@@ -74,8 +74,8 @@ const PortfolioPage = () => {
                   return (
                     <RoundCard 
                       key={index} 
-                      style={{ 'max-width': `${isMobileDevice() ? '90vw' : '50vw'}`}}
-                      className="mx-auto mb-4"
+                      style={{ 'max-width': `${isMobileDevice() ? '90vw' : '26vw'}`}}
+                      className="m-3"
                     >
                       <h4 className="mb-4">
                         {project.projectName}

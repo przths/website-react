@@ -54,7 +54,7 @@ const HomeHeader = ({ textColor, setDarkMode }) => {
           <Navbar.Brand>
             <img
               src={CloudMe}
-              onClick={() => setDarkMode((darkMode) => !darkMode)}
+              /*onClick={() => setDarkMode((darkMode) => !darkMode)}*/
               width="75"
               height="75"
               className="d-inline-block align-top"
