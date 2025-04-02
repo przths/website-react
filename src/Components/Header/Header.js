@@ -28,11 +28,13 @@ const NavButton = (props) => {
 	}
 
   const clickWithAnalytics = () => {
-    ReactGA.event({
-      category: "Navigation Bar",
-      action: "Navigation_Bar_Click",
-      label: homePathSet ? HOME_PAGE_URL : specifiedPath,
-    });
+    if (window.location.hostname !== "localhost") {
+      ReactGA.event({
+        category: "Navigation Bar",
+        action: "Navigation_Bar_Click",
+        label: homePathSet ? HOME_PAGE_URL : specifiedPath,
+      });
+    };
     onClick();
   }
 
