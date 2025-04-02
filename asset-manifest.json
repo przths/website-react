@@ -1,25 +1,22 @@
 {
   "files": {
-    "main.css": "/website-react/static/css/main.3f2df9f9.css",
-    "main.js": "/website-react/static/js/main.d8c811f6.js",
+    "main.css": "/website-react/static/css/main.1c7bee62.css",
+    "main.js": "/website-react/static/js/main.9516a2b5.js",
     "static/js/453.ceb3aa79.chunk.js": "/website-react/static/js/453.ceb3aa79.chunk.js",
     "static/media/meditation.png": "/website-react/static/media/meditation.8c993cc2392d0ad1caa5.png",
     "static/media/thinking.png": "/website-react/static/media/thinking.4a321138c42fb65e2124.png",
     "static/media/surprise.png": "/website-react/static/media/surprise.33d973cfbd3c555dfb96.png",
     "static/media/laugh.png": "/website-react/static/media/laugh.6b245889ce01ff920aab.png",
-    "static/media/globe.png": "/website-react/static/media/globe.2952122e1e038d07471e.png",
     "static/media/me.png": "/website-react/static/media/me.8108c9de728e1e241b1a.png",
-    "static/media/lockkey.png": "/website-react/static/media/lockkey.77970cee03440834c329.png",
-    "static/media/mag.png": "/website-react/static/media/mag.8036a3e2d4953436f4e9.png",
     "static/media/cloudme.png": "/website-react/static/media/cloudme.9285e2a9d746c7d2b4a1.png",
     "index.html": "/website-react/index.html",
     "static/media/index.cjs": "/website-react/static/media/index.f6d03137e8c9dd0de04c.cjs",
-    "main.3f2df9f9.css.map": "/website-react/static/css/main.3f2df9f9.css.map",
-    "main.d8c811f6.js.map": "/website-react/static/js/main.d8c811f6.js.map",
+    "main.1c7bee62.css.map": "/website-react/static/css/main.1c7bee62.css.map",
+    "main.9516a2b5.js.map": "/website-react/static/js/main.9516a2b5.js.map",
     "453.ceb3aa79.chunk.js.map": "/website-react/static/js/453.ceb3aa79.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3f2df9f9.css",
-    "static/js/main.d8c811f6.js"
+    "static/css/main.1c7bee62.css",
+    "static/js/main.9516a2b5.js"
   ]
 }
