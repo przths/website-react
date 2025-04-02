@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/website-react/static/css/main.1c7bee62.css",
-    "main.js": "/website-react/static/js/main.13b29c9f.js",
+    "main.css": "/website-react/static/css/main.26904036.css",
+    "main.js": "/website-react/static/js/main.59df4850.js",
     "static/js/453.ceb3aa79.chunk.js": "/website-react/static/js/453.ceb3aa79.chunk.js",
     "static/media/meditation.png": "/website-react/static/media/meditation.8c993cc2392d0ad1caa5.png",
     "static/media/thinking.png": "/website-react/static/media/thinking.4a321138c42fb65e2124.png",
@@ -11,12 +11,12 @@
     "static/media/cloudme.png": "/website-react/static/media/cloudme.9285e2a9d746c7d2b4a1.png",
     "index.html": "/website-react/index.html",
     "static/media/index.cjs": "/website-react/static/media/index.f6d03137e8c9dd0de04c.cjs",
-    "main.1c7bee62.css.map": "/website-react/static/css/main.1c7bee62.css.map",
-    "main.13b29c9f.js.map": "/website-react/static/js/main.13b29c9f.js.map",
+    "main.26904036.css.map": "/website-react/static/css/main.26904036.css.map",
+    "main.59df4850.js.map": "/website-react/static/js/main.59df4850.js.map",
     "453.ceb3aa79.chunk.js.map": "/website-react/static/js/453.ceb3aa79.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1c7bee62.css",
-    "static/js/main.13b29c9f.js"
+    "static/css/main.26904036.css",
+    "static/js/main.59df4850.js"
   ]
 }
