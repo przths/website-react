@@ -1,5 +1,4 @@
 import './Home.css';
-import ReactGA from "react-ga4";
 import { useEffect, useState } from 'react';
 import Me from "../../Images/me.png";
 import Meditation from "../../Images/meditation.png";

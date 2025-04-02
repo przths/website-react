@@ -1,5 +1,4 @@
 import "./Blog.css";
-import ReactGA from "react-ga4";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import _ from "lodash";

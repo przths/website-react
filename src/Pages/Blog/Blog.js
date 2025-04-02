@@ -1,5 +1,4 @@
 import "./Blog.css";
-import ReactGA from "react-ga4";
 import { useEffect, useState } from "react";
 import PageHeader from "../../Components/PageHeader";
 import { BlogCard } from "../../Components/Common/Common";

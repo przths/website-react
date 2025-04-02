@@ -1,6 +1,5 @@
 import PageHeader from "../../Components/PageHeader";
 import "./Portfolio.css";
-import ReactGA from "react-ga4";
 import { SimpleButtonSelect } from "../../Common/StyledAtoms";
 import { useEffect, useState } from "react";
 import lockKey from "../../Images/lockkey.png";
