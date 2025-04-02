@@ -5,6 +5,7 @@ import PageHeader from "../../Components/PageHeader";
 import { BlogCard } from "../../Components/Common/Common";
 import { getBlogData } from "../../Common/Api";
 import { BLOG_SUMMARY_GRAPHQL_QUERY } from "../../Common/GraphQL";
+import { trackPageView } from "../../Common/Analytics";
 
 const BlogPage = () => {
     const [loading, setLoading] = useState(false);
@@ -13,10 +14,7 @@ const BlogPage = () => {
     useEffect(() => {
       const PAGE_TITLE = "Blog";
       document.title = PAGE_TITLE;
-      ReactGA.send({
-        hitType: "pageview",
-        page: PAGE_TITLE,
-      });
+      trackPageView(PAGE_TITLE);
     }, []);
 
     useEffect(() => {

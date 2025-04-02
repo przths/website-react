@@ -8,6 +8,7 @@ import Surprise from "../../Images/surprise.png";
 import Thinking from "../../Images/thinking.png";
 import PageHeader from '../../Components/PageHeader';
 import { isMobileDevice } from '../../Common/Utils';
+import { trackPageView } from '../../Common/Analytics';
 
 const TypewriterEffect = ({ text, textClass, displayedText, setDisplayedText, speed = 100 }) => {
   const [index, setIndex] = useState(0);
@@ -40,10 +41,7 @@ const HomePage = () => {
   useEffect(() => {
     const PAGE_TITLE = "Home";
     document.title = PAGE_TITLE;
-    ReactGA.send({
-      hitType: "pageview",
-      page: PAGE_TITLE,
-    });
+    trackPageView(PAGE_TITLE);
   }, []);
 
 	useEffect(() => {

@@ -9,6 +9,7 @@ import globe from "../../Images/globe.png";
 import { Card } from "../../Components/Common/Common";
 import { CYPHER_IT_PROJECT_DESCRIPTION, PERSONAL_WEBSITE_PROJECT_DESCRIPTION, WEB_CRAWLER_PROJECT_DESCRIPTION } from "../../Common/Content";
 import { CYPHER_IT_GITHUB_URL, PERSONAL_WEBSITE_GITHUB_URL, WEB_CRAWLER_GITHUB_URL } from "../../Common/Links";
+import { trackPageView } from "../../Common/Analytics";
 
 const PortfolioPage = () => {
     const [projects, setProjects] = useState(true);
@@ -17,10 +18,7 @@ const PortfolioPage = () => {
     useEffect(() => {
       const PAGE_TITLE = "Portfolio";
       document.title = PAGE_TITLE;
-      ReactGA.send({
-        hitType: "pageview",
-        page: PAGE_TITLE,
-      });
+      trackPageView(PAGE_TITLE);
     }, []);
 
     useEffect(() => {

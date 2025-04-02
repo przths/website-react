@@ -1,9 +1,12 @@
 import { useEffect } from "react";
 import PageHeader from "../../Components/PageHeader";
+import { trackPageView } from "../../Common/Analytics";
 
 const AboutMePage = () => {
   useEffect(() => {
-    document.title = "About Me";
+    const PAGE_TITLE = "About Me";
+    document.title = PAGE_TITLE;
+    trackPageView(PAGE_TITLE);
   }, []);
 
   return (

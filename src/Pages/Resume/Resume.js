@@ -1,15 +1,13 @@
 import ReactGA from "react-ga4";
 import { useEffect } from "react";
 import PageHeader from "../../Components/PageHeader";
+import { trackPageView } from "../../Common/Analytics";
 
 const ResumePage = () => {
     useEffect(() => {
       const PAGE_TITLE = "Resume";
       document.title = PAGE_TITLE;
-      ReactGA.send({
-        hitType: "pageview",
-        page: PAGE_TITLE,
-      });
+      trackPageView(PAGE_TITLE);
     }, []);
     
     return (

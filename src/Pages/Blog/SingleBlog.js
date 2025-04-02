@@ -10,6 +10,7 @@ import "../../Common/Typography.css";
 import sanitize from "sanitize-html";
 import { RoundCard } from "../../Components/Common/Common";
 import { formatTimestamp, isMobileDevice } from "../../Common/Utils";
+import { trackPageView } from "../../Common/Analytics";
 
 const SingleBlogPage = () => {
     const { slug } = useParams();
@@ -19,10 +20,7 @@ const SingleBlogPage = () => {
     useEffect(() => {
       const PAGE_TITLE = _.startCase(slug);
       document.title = PAGE_TITLE;
-      ReactGA.send({
-        hitType: "pageview",
-        page: PAGE_TITLE,
-      });
+      trackPageView(PAGE_TITLE);
     }, [slug]);
 
     useEffect(() => {
