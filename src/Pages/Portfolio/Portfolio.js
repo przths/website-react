@@ -2,7 +2,7 @@ import PageHeader from "../../Components/PageHeader";
 import "./Portfolio.css";
 import { SimpleButtonSelect } from "../../Common/StyledAtoms";
 import { useEffect, useState } from "react";
-import { RoundCard } from "../../Components/Common/Common";
+import { MiniRoundCard, RoundCard } from "../../Components/Common/Common";
 import { trackPageView } from "../../Common/Analytics";
 import { isMobileDevice } from "../../Common/Utils";
 import { PORTFOLIO_DATA_GRAPHQL_QUERY } from "../../Common/GraphQL";
@@ -48,6 +48,7 @@ const PortfolioPage = () => {
               </h4>
               <div className={`d-flex ${isMobileDevice() ? 'flex-row' : 'flex-column'}`}>
                 <SimpleButtonSelect 
+                  textColor="black"
                   onClick={() => {
                       setProjects(true);
                   }}
@@ -55,6 +56,7 @@ const PortfolioPage = () => {
                   { projects ? <strong>Projects</strong> : 'Projects' }
                 </SimpleButtonSelect>
                 <SimpleButtonSelect
+                  textColor="black"
                   className={`${isMobileDevice() ? 'ms-2' : ''}`}
                   onClick={() => {
                       setPaintings(true);
@@ -72,25 +74,28 @@ const PortfolioPage = () => {
               }
               { portfolio?.projects.map((project, index) => {
                   return (
-                    <RoundCard 
+                    <MiniRoundCard 
                       key={index} 
                       style={{ 'max-width': `${isMobileDevice() ? '90vw' : '26vw'}`}}
                       className="m-3"
                     >
-                      <h4 className="mb-4">
-                        {project.projectName}
-                      </h4>
-                      <p>
-                        {project.projectDescription}
-                      </p>
-                      <p class="card-text">
-                        <small class="text-muted">
-                          <a href={project.projectUrl} target="_blank" rel="noopener noreferrer">
-                            GitHub Link
-                          </a>
-                        </small>
-                      </p>
-                    </RoundCard>
+                      <img src={project.projectImage.url} class="card-img-top blog-card-img-small loading" alt="..." />
+                      <div className="mt-4">
+                        <h4 className="mb-2">
+                          {project.projectName}
+                        </h4>
+                        <p>
+                          {project.projectDescription}
+                        </p>
+                        <p class="card-text">
+                          <small class="text-muted">
+                            <a href={project.projectUrl} target="_blank" rel="noopener noreferrer">
+                              GitHub Link
+                            </a>
+                          </small>
+                        </p>
+                      </div>
+                    </MiniRoundCard>
                   );
                 })
               }
