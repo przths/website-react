@@ -80,14 +80,12 @@ const PortfolioPage = () => {
                       style={{ 'max-width': `${isMobileDevice() ? '90vw' : '26vw'}`}}
                       className="m-3"
                     >
-                      <div>
-                        <Image 
-                          src={project.projectImage.url} 
-                          className="card-img-top blog-card-img-small loading"
-                          width={project.projectImage.width}
-                          height={project.projectImage.height}
-                        />
-                      </div>
+                      <Image 
+                        src={project.projectImage.url} 
+                        className="card-img-top blog-card-img-small loading"
+                        width={project.projectImage.width}
+                        height={project.projectImage.height}
+                      />
                       <div className="mt-4">
                         <h4 className="mb-2">
                           {project.projectName}

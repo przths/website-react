@@ -1,0 +1,6 @@
+@media (min-width: 510px) {
+  .social-media-container {
+    margin: auto;
+    max-width: 60vw;
+  }
+}

@@ -46,3 +46,15 @@ export const PORTFOLIO_DATA_GRAPHQL_QUERY = gql`
     }
   }
 `
+
+export const SOCIAL_MEDIA_DATA_GRAPHQL_QUERY = gql`
+  query {
+    contacts {
+      mediaImage {
+        url
+        width
+        height
+      }
+    }
+  }
+`
