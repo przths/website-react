@@ -17,6 +17,7 @@ import BlogPage from "./Pages/Blog/Blog";
 import SingleBlogPage from "./Pages/Blog/SingleBlog";
 import AboutMePage from "./Pages/AboutMe/AboutMe";
 import { initializeAnalytics } from "./Common/Analytics";
+import ResumePage from "./Pages/Resume/Resume";
 
 function App() {
   useEffect(() => {
@@ -32,7 +33,7 @@ function App() {
         <Route path={PORTFOLIO_PAGE_URL} element={<PortfolioPage />} />
         <Route path={BLOG_PAGE_URL} element={<BlogPage />} />
         <Route path={`${BLOG_PAGE_URL}/:slug`} element={<SingleBlogPage />} />
-        <Route path={RESUME_PAGE_URL} element={<SingleBlogPage customSlug="my-resume" />} />
+        <Route path={RESUME_PAGE_URL} element={<ResumePage />} />
         <Route path={ABOUT_ME_PAGE_URL} element={<AboutMePage />} />
       </Routes>
     </BrowserRouter>

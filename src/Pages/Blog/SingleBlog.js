@@ -12,16 +12,18 @@ import { RoundCard } from "../../Components/Common/Common";
 import { formatTimestamp, isMobileDevice } from "../../Common/Utils";
 import { trackPageView } from "../../Common/Analytics";
 
-const SingleBlogPage = ({ customSlug = null, showTitle = true }) => {
+const SingleBlogPage = ({ customSlug = null }) => {
     let { slug } = useParams();
     customSlug && (slug = customSlug);
     const [loading, setLoading] = useState(false);
     const [blogData, setBlogData] = useState(null);
 
     useEffect(() => {
-      const PAGE_TITLE = _.startCase(slug);
-      document.title = PAGE_TITLE;
-      trackPageView(PAGE_TITLE);
+      if (!customSlug) {
+        const PAGE_TITLE = _.startCase(slug);
+        document.title = PAGE_TITLE;
+        trackPageView(PAGE_TITLE);
+      }
     }, [slug]);
 
     useEffect(() => {
@@ -54,11 +56,9 @@ const SingleBlogPage = ({ customSlug = null, showTitle = true }) => {
                       height={blogData.coverPhoto.height}
                     />
                     <div class="mt-5">
-                      {showTitle && 
-                        <h3 className="mb-4">
-                          <strong>{blogData.title}</strong>
-                        </h3>
-                      }
+                      <h3 className="mb-4">
+                        <strong>{blogData.title}</strong>
+                      </h3>
                       <p dangerouslySetInnerHTML={{__html: sanitize(blogData.content.html)}} />
                       <p class="card-text">
                         <small class="text-muted">

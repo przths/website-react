@@ -73,7 +73,7 @@ const PortfolioPage = () => {
                     <div class="spinner-border" role="status" />
                   </div>
               }
-              { portfolio?.projects.map((project, index) => {
+              { projects && portfolio?.projects.map((project, index) => {
                   return (
                     <MiniRoundCard 
                       key={index} 
@@ -104,6 +104,12 @@ const PortfolioPage = () => {
                     </MiniRoundCard>
                   );
                 })
+              }
+              {
+                paintings && 
+                <h4 className="m-3 mx-auto">
+                  Stay tuned for my paintings!
+                </h4>
               }
             </div>
           </div>
