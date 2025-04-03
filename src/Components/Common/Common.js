@@ -52,6 +52,8 @@ export const MiniRoundCard = styled.div`
   border-radius: 30px;
   background-color: white;
   box-shadow: 4px 4px 12px 4px rgba(0,0,0,0.2);
+  background: linear-gradient( #f2709c, #ff9472);
+  color: white;
   transition: 0.3s;
   @media (max-width: 450px) {
     padding: 20px;

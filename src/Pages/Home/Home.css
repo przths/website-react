@@ -7,7 +7,9 @@
 }
 
 .green-text {
-    color: #1db954;
+  background-image: linear-gradient( #f2709c, #ff9472);
+  color: transparent;
+  background-clip: text;
 }
 
 /* TODO: turn the following into Styled Components to stop CSS leaking into other files */
