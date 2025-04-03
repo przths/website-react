@@ -36,7 +36,7 @@ export const BlogCard = ({ key, postData }) => {
               height={postData.coverPhoto.height}
             />
             <div class="mt-4 card-body">
-                <h5 class="card-title">{postData.title}</h5>
+                <h5 class="card-title mb-3">{postData.title}</h5>
                 <p class="card-text">{postData.summary}</p> 
                 <p class="card-text"><small class="text-muted">Published: {formatTimestamp(postData.publishDate)}</small></p>
             </div>
