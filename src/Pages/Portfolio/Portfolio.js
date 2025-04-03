@@ -107,9 +107,9 @@ const PortfolioPage = () => {
               }
               {
                 paintings && 
-                <h4 className="m-3 mx-auto">
+                <h6 className="m-3 mx-auto">
                   Stay tuned for my paintings!
-                </h4>
+                </h6>
               }
             </div>
           </div>
