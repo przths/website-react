@@ -2,7 +2,7 @@ import PageHeader from "../../Components/PageHeader";
 import "./Portfolio.css";
 import { SimpleButtonSelect } from "../../Common/StyledAtoms";
 import { useEffect, useState } from "react";
-import { MiniRoundCard, RoundCard } from "../../Components/Common/Common";
+import { MiniRoundCard } from "../../Components/Common/Common";
 import { trackPageView } from "../../Common/Analytics";
 import { isMobileDevice } from "../../Common/Utils";
 import { PORTFOLIO_DATA_GRAPHQL_QUERY } from "../../Common/GraphQL";
@@ -79,7 +79,16 @@ const PortfolioPage = () => {
                       style={{ 'max-width': `${isMobileDevice() ? '90vw' : '26vw'}`}}
                       className="m-3"
                     >
-                      <img src={project.projectImage.url} class="card-img-top blog-card-img-small loading" alt="..." />
+                      <div>
+                        <img 
+                          src={project.projectImage.url} 
+                          class="card-img-top blog-card-img-small loading"
+                          width={project.projectImage.width}
+                          height={project.projectImage.height}
+                          style={{ 'width': '100%', 'height': 'auto' }}
+                          alt="..." 
+                        />
+                      </div>
                       <div className="mt-4">
                         <h4 className="mb-2">
                           {project.projectName}

@@ -33,6 +33,8 @@ export const PORTFOLIO_DATA_GRAPHQL_QUERY = gql`
     projects {
       projectImage {
         url
+        width
+        height
       }
       projectName
       projectDescription
