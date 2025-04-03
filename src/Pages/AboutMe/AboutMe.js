@@ -45,9 +45,9 @@ const AboutMePage = () => {
               className="card-img-top mx-auto" 
               width={mediaData.posts[0].coverPhoto.width}
               height={mediaData.posts[0].coverPhoto.height}
-              maxWidth = '40%'
+              maxWidth = '60%'
             />
-            <div class="mt-5">
+            <div class="mt-4">
               <h3 className="mb-4">
                 <strong>{mediaData.posts[0].title}</strong>
               </h3>

@@ -55,7 +55,7 @@ const SingleBlogPage = ({ customSlug = null }) => {
                       width={blogData.coverPhoto.width}
                       height={blogData.coverPhoto.height}
                     />
-                    <div class="mt-5">
+                    <div class="mt-4">
                       <h3 className="mb-4">
                         <strong>{blogData.title}</strong>
                       </h3>
