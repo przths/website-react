@@ -1,5 +1,6 @@
 import PageHeader from "../../Components/PageHeader";
 import "./Portfolio.css";
+import { Image } from "../../Components/Common/Common";
 import { SimpleButtonSelect } from "../../Common/StyledAtoms";
 import { useEffect, useState } from "react";
 import { MiniRoundCard } from "../../Components/Common/Common";
@@ -80,13 +81,11 @@ const PortfolioPage = () => {
                       className="m-3"
                     >
                       <div>
-                        <img 
+                        <Image 
                           src={project.projectImage.url} 
                           class="card-img-top blog-card-img-small loading"
                           width={project.projectImage.width}
                           height={project.projectImage.height}
-                          style={{ 'width': '100%', 'height': 'auto' }}
-                          alt="..." 
                         />
                       </div>
                       <div className="mt-4">

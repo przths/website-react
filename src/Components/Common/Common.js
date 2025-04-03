@@ -4,32 +4,20 @@ import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import { isMobileDevice } from "../../Common/Utils";
 
-export const Card = ({ imageSrc, title, body, href, publishDate }) => {
-    return (
-        <div class="card portfolio-card">
-            <div class="d-flex justify-content-center">
-                <img src={imageSrc} class="col-md-2 my-auto project-img" alt="..."/>
-                <div class="col-md-6">
-                    <div class="card-body">
-                        <h5 class="card-title">{title}</h5>
-                        <p class="card-text">{body}</p>
-                        { href && 
-                            <a href={href} target="_blank" rel="noreferrer" class="card-link">
-                                GitHub Repository
-                            </a> 
-                        }
-                        { publishDate && 
-                            <p class="card-text">
-                                <small class="text-muted">
-                                    { publishDate }
-                                </small>
-                            </p> 
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+export const Image = ({ src, className, width, height }) => {
+  return (
+    <img 
+      src={src} 
+      class={className}
+      width={width}
+      height={height}
+      style={{ 'width': '100%', 'height': 'auto' }}
+      loading="lazy"
+      decoding="async"
+      fetchPriority="high"
+      alt="presentation-image" 
+    />
+  ); 
 }
 
 export const BlogCard = ({ postData }) => {
@@ -40,13 +28,11 @@ export const BlogCard = ({ postData }) => {
           style={{ 'max-width': `${isMobileDevice() ? '95vw' : '38vw'}`, }} 
           onClick={() => postData.slug && navigate(`/blog/${postData.slug}`)}
         >
-            <img 
+            <Image 
               src={postData.coverPhoto.url} 
               class="card-img-top blog-card-img-small loading" 
               width={postData.coverPhoto.width}
               height={postData.coverPhoto.height}
-              style={{ 'width': '100%', 'height': 'auto' }}
-              alt="..." 
             />
             <div class="mt-4 card-body">
                 <h5 class="card-title">{postData.title}</h5>

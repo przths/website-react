@@ -2,6 +2,7 @@ import "./Blog.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import _ from "lodash";
+import { Image } from "../../Components/Common/Common";
 import { getBlogData } from "../../Common/Api";
 import { BLOG_DETAILS_GRAPHQL_QUERY } from "../../Common/GraphQL";
 import PageHeader from "../../Components/PageHeader";
@@ -45,13 +46,11 @@ const SingleBlogPage = () => {
             { blogData && 
                 <div class="d-flex flex-direction mt-3 mb-5">
                   <RoundCard style={{ 'max-width': `${isMobileDevice() ? '90vw' : '50vw'}`, }} className="mx-auto">
-                    <img 
+                    <Image
                       src={blogData.coverPhoto.url} 
                       class="card-img-top blog-card-img loading" 
-                      alt="..."
                       width={blogData.coverPhoto.width}
                       height={blogData.coverPhoto.height}
-                      style={{ 'width': '100%', 'height': 'auto' }}
                     />
                     <div class="mt-5">
                         <h3 className="mb-4">
