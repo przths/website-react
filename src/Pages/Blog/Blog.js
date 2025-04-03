@@ -48,11 +48,7 @@ const BlogPage = () => {
                           return (
                               <BlogCard
                                   key={index}
-                                  imageSrc={post.coverPhoto.url}
-                                  title={post.title}
-                                  body={post.summary}
-                                  slug={post.slug}
-                                  publishDate={post.publishDate}
+                                  postData={post}
                               />
                           );
                       })

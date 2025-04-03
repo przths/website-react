@@ -45,7 +45,14 @@ const SingleBlogPage = () => {
             { blogData && 
                 <div class="d-flex flex-direction mt-3 mb-5">
                   <RoundCard style={{ 'max-width': `${isMobileDevice() ? '90vw' : '50vw'}`, }} className="mx-auto">
-                    <img src={blogData.coverPhoto.url} class="card-img-top blog-card-img loading" alt="..." />
+                    <img 
+                      src={blogData.coverPhoto.url} 
+                      class="card-img-top blog-card-img loading" 
+                      alt="..."
+                      width={blogData.coverPhoto.width}
+                      height={blogData.coverPhoto.height}
+                      style={{ 'width': '100%', 'height': 'auto' }}
+                    />
                     <div class="mt-5">
                         <h3 className="mb-4">
                             <strong>{blogData.title}</strong>

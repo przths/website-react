@@ -32,15 +32,26 @@ export const Card = ({ imageSrc, title, body, href, publishDate }) => {
     );
 }
 
-export const BlogCard = ({ imageSrc, title, body, slug, publishDate }) => {
+export const BlogCard = ({ postData }) => {
     const navigate = useNavigate();
     return (
-        <MiniRoundCard class="mb-5" style={{ 'max-width': `${isMobileDevice() ? '95vw' : '38vw'}`, }} onClick={() => slug && navigate(`/blog/${slug}`)}>
-            <img src={imageSrc} class="card-img-top blog-card-img-small loading" alt="..." />
+        <MiniRoundCard 
+          class="mb-5" 
+          style={{ 'max-width': `${isMobileDevice() ? '95vw' : '38vw'}`, }} 
+          onClick={() => postData.slug && navigate(`/blog/${postData.slug}`)}
+        >
+            <img 
+              src={postData.coverPhoto.url} 
+              class="card-img-top blog-card-img-small loading" 
+              width={postData.coverPhoto.width}
+              height={postData.coverPhoto.height}
+              style={{ 'width': '100%', 'height': 'auto' }}
+              alt="..." 
+            />
             <div class="mt-4 card-body">
-                <h5 class="card-title">{title}</h5>
-                <p class="card-text">{body}</p> 
-                <p class="card-text"><small class="text-muted">Published: {formatTimestamp(publishDate)}</small></p>
+                <h5 class="card-title">{postData.title}</h5>
+                <p class="card-text">{postData.summary}</p> 
+                <p class="card-text"><small class="text-muted">Published: {formatTimestamp(postData.publishDate)}</small></p>
             </div>
         </MiniRoundCard>
     );

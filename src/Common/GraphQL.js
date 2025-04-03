@@ -8,6 +8,8 @@ export const BLOG_SUMMARY_GRAPHQL_QUERY = gql`
             slug,
             coverPhoto {
                 url
+                width
+                height
             },
             publishDate
         }
@@ -20,6 +22,8 @@ export const BLOG_DETAILS_GRAPHQL_QUERY = gql`
             title
             coverPhoto {
                 url
+                width
+                height
             },
             content {
                 html
