@@ -12,8 +12,9 @@ import { RoundCard } from "../../Components/Common/Common";
 import { formatTimestamp, isMobileDevice } from "../../Common/Utils";
 import { trackPageView } from "../../Common/Analytics";
 
-const SingleBlogPage = () => {
-    const { slug } = useParams();
+const SingleBlogPage = ({ customSlug = null, showTitle = true }) => {
+    let { slug } = useParams();
+    customSlug && (slug = customSlug);
     const [loading, setLoading] = useState(false);
     const [blogData, setBlogData] = useState(null);
 
@@ -25,7 +26,7 @@ const SingleBlogPage = () => {
 
     useEffect(() => {
         setLoading(true);
-        !blogData && getBlogData(BLOG_DETAILS_GRAPHQL_QUERY, { slug })
+        getBlogData(BLOG_DETAILS_GRAPHQL_QUERY, { slug })
           .then((data) => {
               setBlogData(data.posts[0]);
               setLoading(false);
@@ -53,15 +54,17 @@ const SingleBlogPage = () => {
                       height={blogData.coverPhoto.height}
                     />
                     <div class="mt-5">
+                      {showTitle && 
                         <h3 className="mb-4">
-                            <strong>{blogData.title}</strong>
+                          <strong>{blogData.title}</strong>
                         </h3>
-                        <p dangerouslySetInnerHTML={{__html: sanitize(blogData.content.html)}} />
-                        <p class="card-text">
-                          <small class="text-muted">
-                            Published: {formatTimestamp(blogData.publishDate)}
-                          </small>
-                        </p>
+                      }
+                      <p dangerouslySetInnerHTML={{__html: sanitize(blogData.content.html)}} />
+                      <p class="card-text">
+                        <small class="text-muted">
+                          Published: {formatTimestamp(blogData.publishDate)}
+                        </small>
+                      </p>
                     </div>
                   </RoundCard>
                 </div>
