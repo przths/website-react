@@ -29,7 +29,7 @@ const AboutMePage = () => {
 
   return (
     <PageHeader>
-      <div className="d-flex flex-direction mt-3 mb-5">
+      <div className="d-flex flex-direction mt-3 mb-4">
         { loading && 
           <div class="mx-auto">
             <div class="spinner-border" role="status" />
