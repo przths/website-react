@@ -2,6 +2,14 @@
     background: transparent url(../../Images/cloudme.png) no-repeat center center;
 }
 
+.blog-card-img {
+  border-radius: 30px;
+}
+
+.blog-card-img-small {
+  border-radius: 15px;
+}
+
 .blog-card-container {
     max-width: 48%;
     padding: 0px;

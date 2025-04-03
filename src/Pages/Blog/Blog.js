@@ -46,10 +46,7 @@ const BlogPage = () => {
                   blogData?.posts?.length > 0 &&
                       blogData.posts.map((post, index) => {
                           return (
-                              <BlogCard
-                                  key={index}
-                                  postData={post}
-                              />
+                              <BlogCard key={index} postData={post} />
                           );
                       })
                 }

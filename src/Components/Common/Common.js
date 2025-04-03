@@ -20,17 +20,18 @@ export const Image = ({ src, className, width, height }) => {
   ); 
 }
 
-export const BlogCard = ({ postData }) => {
+export const BlogCard = ({ key, postData }) => {
     const navigate = useNavigate();
     return (
         <MiniRoundCard 
+          key={key}
           class="mb-5" 
           style={{ 'max-width': `${isMobileDevice() ? '95vw' : '38vw'}`, }} 
           onClick={() => postData.slug && navigate(`/blog/${postData.slug}`)}
         >
             <Image 
               src={postData.coverPhoto.url} 
-              class="card-img-top blog-card-img-small loading" 
+              className="card-img-top blog-card-img-small loading" 
               width={postData.coverPhoto.width}
               height={postData.coverPhoto.height}
             />

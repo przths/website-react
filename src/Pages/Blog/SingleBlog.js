@@ -48,7 +48,7 @@ const SingleBlogPage = () => {
                   <RoundCard style={{ 'max-width': `${isMobileDevice() ? '90vw' : '50vw'}`, }} className="mx-auto">
                     <Image
                       src={blogData.coverPhoto.url} 
-                      class="card-img-top blog-card-img loading" 
+                      className="card-img-top blog-card-img loading" 
                       width={blogData.coverPhoto.width}
                       height={blogData.coverPhoto.height}
                     />

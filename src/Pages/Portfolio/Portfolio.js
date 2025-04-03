@@ -83,7 +83,7 @@ const PortfolioPage = () => {
                       <div>
                         <Image 
                           src={project.projectImage.url} 
-                          class="card-img-top blog-card-img-small loading"
+                          className="card-img-top blog-card-img-small loading"
                           width={project.projectImage.width}
                           height={project.projectImage.height}
                         />

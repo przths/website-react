@@ -12,14 +12,6 @@
     border-radius: 25px;
 }
 
-.blog-card-img {
-  border-radius: 30px;
-}
-
-.blog-card-img-small {
-  border-radius: 15px;
-}
-
 @media (max-width: 450px) {
   .blog-card-img {
     border-radius: 15px;
