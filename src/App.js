@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
@@ -18,8 +18,12 @@ import SingleBlogPage from "./Pages/Blog/SingleBlog";
 import AboutMePage from "./Pages/AboutMe/AboutMe";
 import { initializeAnalytics } from "./Common/Analytics";
 import ResumePage from "./Pages/Resume/Resume";
+import { getRandomBackgroundColor } from "./Common/Utils";
+import { ColorContext } from "./Common/Context";
 
 function App() {
+  const [backgroundColor] = useState(getRandomBackgroundColor());
+  
   useEffect(() => {
     initializeAnalytics()
   }, []);
@@ -28,13 +32,43 @@ function App() {
     <BrowserRouter basename={BASELINE_URL}>
       <Routes>
         {[ROOT_PAGE_URL, HOME_PAGE_URL].map((path, index) => 
-          <Route path={path} element={<HomePage />} key={index} />
+          <Route 
+            path={path} 
+            element={
+              <ColorContext.Provider value={backgroundColor}>
+                <HomePage />
+              </ColorContext.Provider>
+            } 
+            key={index} />
         )}
-        <Route path={PORTFOLIO_PAGE_URL} element={<PortfolioPage />} />
-        <Route path={BLOG_PAGE_URL} element={<BlogPage />} />
-        <Route path={`${BLOG_PAGE_URL}/:slug`} element={<SingleBlogPage />} />
-        <Route path={RESUME_PAGE_URL} element={<ResumePage />} />
-        <Route path={ABOUT_ME_PAGE_URL} element={<AboutMePage />} />
+        <Route 
+          path={PORTFOLIO_PAGE_URL} 
+          element={
+            <ColorContext.Provider value={backgroundColor}>
+              <PortfolioPage />
+            </ColorContext.Provider>
+          } 
+        />
+        <Route 
+          path={BLOG_PAGE_URL} 
+          element={
+            <ColorContext.Provider value={backgroundColor}>
+              <BlogPage />
+            </ColorContext.Provider>
+          } 
+        />
+        <Route 
+          path={`${BLOG_PAGE_URL}/:slug`} 
+          element={<SingleBlogPage />} 
+        />
+        <Route 
+          path={RESUME_PAGE_URL} 
+          element={<ResumePage />} 
+        />
+        <Route 
+          path={ABOUT_ME_PAGE_URL} 
+          element={<AboutMePage />} 
+        />
       </Routes>
     </BrowserRouter>
   );

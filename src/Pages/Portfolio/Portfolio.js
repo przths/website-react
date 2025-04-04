@@ -5,15 +5,17 @@ import { SimpleButtonSelect } from "../../Common/StyledAtoms";
 import { useEffect, useState } from "react";
 import { MiniRoundCard } from "../../Components/Common/Common";
 import { trackPageView } from "../../Common/Analytics";
-import { isMobileDevice } from "../../Common/Utils";
+import { getSpecialTextColorClass, isMobileDevice } from "../../Common/Utils";
 import { PORTFOLIO_DATA_GRAPHQL_QUERY } from "../../Common/GraphQL";
 import { getBlogData } from "../../Common/Api";
+import { useColorContext } from "../../Common/Context";
 
 const PortfolioPage = () => {
     const [projects, setProjects] = useState(true);
     const [paintings, setPaintings] = useState(false);
     const [portfolio, setPortfolio] = useState(null);
     const [loading, setLoading] = useState(false);
+    const backgroundColor = useColorContext();
 
     useEffect(() => {
       const PAGE_TITLE = "Portfolio";
@@ -42,7 +44,7 @@ const PortfolioPage = () => {
         <PageHeader>
           <div class={`d-flex portfolio-container justify-content-between mt-4 ${isMobileDevice() ? 'flex-column' : ''}`}>
             <div class={`d-flex flex-column left-panel mb-3 ${isMobileDevice() ? 'ms-4' : 'mt-3'}`}>
-              <h4 class="mb-2 title-color">
+              <h4 class="mb-2" style={getSpecialTextColorClass()}>
                 <strong>
                   My Portfolio
                 </strong>
@@ -69,9 +71,9 @@ const PortfolioPage = () => {
             </div>
             <div class="d-flex flex-wrap mx-auto mb-3 portfolio-card-container">
               { loading && 
-                  <div class="mx-auto">
-                    <div class="spinner-border" role="status" />
-                  </div>
+                <div class="mx-auto">
+                  <div class="spinner-border" role="status" />
+                </div>
               }
               { projects && portfolio?.projects.map((project, index) => {
                   return (
@@ -79,6 +81,7 @@ const PortfolioPage = () => {
                       key={index} 
                       style={{ 'max-width': `${isMobileDevice() ? '90vw' : '26vw'}`}}
                       className="m-3"
+                      backgroundColor={backgroundColor}
                     >
                       <Image 
                         src={project.projectImage.url} 

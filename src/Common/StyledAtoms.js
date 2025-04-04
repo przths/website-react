@@ -56,10 +56,11 @@ export const SimpleButton = styled.button`
   margin: 0;
   padding: 0;
   cursor: pointer;
-  transition: 0.3s;
   color: ${props => props.textColor};
   &:hover {
-    color: #1db954;
+    background-image: linear-gradient(145deg, #ff416c, #8b5cf6);
+    color: transparent;
+    background-clip: text;
   }
   @media (min-width: 500px) {
     padding: 14px 22px;

@@ -1,5 +1,5 @@
 import "./Common.css";
-import { formatTimestamp } from "../../Common/Utils";
+import { formatTimestamp, getRandomBackgroundColor } from "../../Common/Utils";
 import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import { isMobileDevice } from "../../Common/Utils";
@@ -20,13 +20,14 @@ export const Image = ({ src, className, width, height, maxWidth = '100%' }) => {
   ); 
 }
 
-export const BlogCard = ({ key, postData }) => {
+export const BlogCard = ({ key, postData, backgroundColor }) => {
     const navigate = useNavigate();
     return (
         <MiniRoundCard 
           key={key}
           class="mb-5" 
           style={{ 'max-width': `${isMobileDevice() ? '95vw' : '38vw'}`, }} 
+          backgroundColor={backgroundColor}
           onClick={() => postData.slug && navigate(`/blog/${postData.slug}`)}
         >
             <Image 
@@ -38,11 +39,16 @@ export const BlogCard = ({ key, postData }) => {
             <div class="mt-4 card-body">
                 <h5 class="card-title mb-3">{postData.title}</h5>
                 <p class="card-text">{postData.summary}</p> 
-                <p class="card-text"><small class="text-muted">Published: {formatTimestamp(postData.publishDate)}</small></p>
+                <p class="card-text">
+                  <small class="text-muted">
+                    Published: {formatTimestamp(postData.publishDate)}
+                  </small>
+                </p>
             </div>
         </MiniRoundCard>
     );
 }
+
 
 export const MiniRoundCard = styled.div`
   display: flex;
@@ -52,8 +58,8 @@ export const MiniRoundCard = styled.div`
   border-radius: 30px;
   background-color: white;
   box-shadow: 4px 4px 12px 4px rgba(0,0,0,0.2);
-  background: linear-gradient( #f2709c, #ff9472);
-  color: white;
+  background: ${props => props.backgroundColor};
+  text-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   @media (max-width: 450px) {
     padding: 20px;

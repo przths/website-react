@@ -6,7 +6,6 @@ import { Image } from "../../Components/Common/Common";
 import { getBlogData } from "../../Common/Api";
 import { BLOG_DETAILS_GRAPHQL_QUERY } from "../../Common/GraphQL";
 import PageHeader from "../../Components/PageHeader";
-import "../../Common/Typography.css";
 import sanitize from "sanitize-html";
 import { RoundCard } from "../../Components/Common/Common";
 import { formatTimestamp, isMobileDevice } from "../../Common/Utils";

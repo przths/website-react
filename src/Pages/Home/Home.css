@@ -6,12 +6,6 @@
     font-size: 300px;
 }
 
-.green-text {
-  background-image: linear-gradient( #f2709c, #ff9472);
-  color: transparent;
-  background-clip: text;
-}
-
 /* TODO: turn the following into Styled Components to stop CSS leaking into other files */
 @media (min-width: 510px) {
 	.image-size {
@@ -21,11 +15,14 @@
 	.title-size {
 		font-size: 20px;
 	}
+  .job-title-size {
+    font-size: 25px;
+  }
 	.large-heading {
 		font-size: 52px;
 	}
 	.left-section {
-		min-width: 510px;
+		min-width: 545px;
 	}
 }
 
@@ -47,9 +44,15 @@
 	.title-size {
 		font-size: 20px;
 	}
+  .job-title-size {
+    font-size: 25px;
+  }
 	.large-heading {
 		font-size: 41px;
     margin: 0px;
+	}
+  .left-section {
+		max-width: 350px;
 	}
 	.text-alignment {
 		text-align: center;	

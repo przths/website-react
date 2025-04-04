@@ -6,10 +6,10 @@ import Laugh from "../../Images/laugh.png";
 import Surprise from "../../Images/surprise.png";
 import Thinking from "../../Images/thinking.png";
 import PageHeader from '../../Components/PageHeader';
-import { isMobileDevice } from '../../Common/Utils';
+import { getSpecialTextColorClass } from '../../Common/Utils';
 import { trackPageView } from '../../Common/Analytics';
 
-const TypewriterEffect = ({ text, textClass, displayedText, setDisplayedText, speed = 100 }) => {
+const TypewriterEffect = ({ text, textStyle, displayedText, setDisplayedText, speed = 100 }) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const TypewriterEffect = ({ text, textClass, displayedText, setDisplayedText, sp
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, text, speed]);
 
-  return <div class={textClass}>{displayedText}</div>;
+  return <div style={textStyle}>{displayedText}</div>;
 };
 
 const HomePage = () => {
@@ -75,11 +75,11 @@ const HomePage = () => {
                 />
               }
 						</div>
-						<strong class={`title-size ${isMobileDevice() ? "mt-2" : "mt-2"}`}>
+						<strong class={`job-title-size mt-2`}>
               { (name === displayedName) &&
                 <TypewriterEffect 
                   text={jobTitle} 
-                  textClass="green-text"
+                  textStyle={getSpecialTextColorClass()}
                   displayedText={displayedJobTitle} 
                   setDisplayedText={setDisplatedJobTitle} 
                   speed={TYPING_SPEED} 

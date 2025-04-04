@@ -5,10 +5,12 @@ import { BlogCard } from "../../Components/Common/Common";
 import { getBlogData } from "../../Common/Api";
 import { BLOG_SUMMARY_GRAPHQL_QUERY } from "../../Common/GraphQL";
 import { trackPageView } from "../../Common/Analytics";
+import { useColorContext } from "../../Common/Context";
 
 const BlogPage = () => {
     const [loading, setLoading] = useState(false);
     const [blogData, setBlogData] = useState(null);
+    const backgroundColor = useColorContext();
 
     useEffect(() => {
       const PAGE_TITLE = "Blog";
@@ -44,11 +46,15 @@ const BlogPage = () => {
             <div class='d-flex flex-wrap mx-auto justify-content-between blog-container mt-3 mb-2'>
                 {
                   blogData?.posts?.length > 0 &&
-                      blogData.posts.map((post, index) => {
-                          return (
-                              <BlogCard key={index} postData={post} />
-                          );
-                      })
+                    blogData.posts.map((post, index) => {
+                      return (
+                        <BlogCard 
+                          key={index} 
+                          postData={post} 
+                          backgroundColor={backgroundColor}
+                        />
+                      );
+                    })
                 }
             </div>
         </PageHeader>
