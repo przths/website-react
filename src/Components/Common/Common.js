@@ -60,7 +60,11 @@ export const MiniRoundCard = styled.div`
   box-shadow: 4px 4px 12px 4px rgba(0,0,0,0.2);
   background: ${props => props.backgroundColor};
   text-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 6px 6px 12px 6px rgba(0, 0, 0, 0.25);
+  }
   @media (max-width: 450px) {
     padding: 20px;
     border-radius: 30px;

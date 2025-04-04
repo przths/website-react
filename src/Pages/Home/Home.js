@@ -75,7 +75,7 @@ const HomePage = () => {
                 />
               }
 						</div>
-						<strong class={`job-title-size mt-2`}>
+						<div class={`job-title-size mt-2`}>
               { (name === displayedName) &&
                 <TypewriterEffect 
                   text={jobTitle} 
@@ -85,7 +85,7 @@ const HomePage = () => {
                   speed={TYPING_SPEED} 
                 />
               }
-            </strong>
+            </div>
 					</div>
 				</div>
 				<div class="mx-auto my-auto">

@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-
 export function formatTimestamp(timestamp) {
     const date = new Date(timestamp);
     
@@ -27,14 +25,17 @@ export function isMobileDevice() {
 }
 
 export function getRandomBackgroundColor() {
+  return 'linear-gradient(145deg, #fffbf0, #f9e0d4)';
+  /*
     const colors = [
-      'linear-gradient(145deg, #ffdad5, #ffe5b4)',
+      'linear-gradient(145deg, #ffdad5, #ffe5b4)', - another good one
       'linear-gradient(145deg, #fad0c4, #ffd1ff)',
       'linear-gradient(145deg, #8ee3f5, #b3f6d8)',
       'linear-gradient(145deg, #dfe9f3, #f6f7d7)',
       'linear-gradient(145deg, #fffbf0, #f9e0d4)',
     ];
     return colors[Math.floor(Math.random() * colors.length)];
+  */
 }
 
 export function getSpecialTextColorClass() {

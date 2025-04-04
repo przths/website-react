@@ -45,9 +45,7 @@ const PortfolioPage = () => {
           <div class={`d-flex portfolio-container justify-content-between mt-4 ${isMobileDevice() ? 'flex-column' : ''}`}>
             <div class={`d-flex flex-column left-panel mb-3 ${isMobileDevice() ? 'ms-4' : 'mt-3'}`}>
               <h4 class="mb-2" style={getSpecialTextColorClass()}>
-                <strong>
-                  My Portfolio
-                </strong>
+                My Portfolio
               </h4>
               <div className={`d-flex ${isMobileDevice() ? 'flex-row' : 'flex-column'}`}>
                 <SimpleButtonSelect 
@@ -82,6 +80,7 @@ const PortfolioPage = () => {
                       style={{ 'max-width': `${isMobileDevice() ? '90vw' : '26vw'}`}}
                       className="m-3"
                       backgroundColor={backgroundColor}
+                      onClick={() => window.open(project.projectUrl, "_blank")}
                     >
                       <Image 
                         src={project.projectImage.url} 

@@ -22,7 +22,7 @@
 		font-size: 42px;
 	}
 	.left-section {
-		min-width: 545px;
+		min-width: 535px;
 	}
 }
 
@@ -52,7 +52,7 @@
     margin: 0px;
 	}
   .left-section {
-		max-width: 350px;
+		max-width: 300px;
 	}
 	.text-alignment {
 		text-align: center;	
