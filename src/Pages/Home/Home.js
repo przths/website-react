@@ -6,35 +6,39 @@ import Laugh from "../../Images/laugh.png";
 import Surprise from "../../Images/surprise.png";
 import Thinking from "../../Images/thinking.png";
 import PageHeader from '../../Components/PageHeader';
-import { getSpecialTextColorClass } from '../../Common/Utils';
+import { getSpecialTextColorClass, splitStringUsingRegex } from '../../Common/Utils';
 import { trackPageView } from '../../Common/Analytics';
+import { motion } from 'framer-motion';
 
-const TypewriterEffect = ({ text, textStyle, displayedText, setDisplayedText, speed = 100 }) => {
-  const [index, setIndex] = useState(0);
+const charVariants = {
+  hidden: { opacity: 0 },
+  reveal: { opacity: 1 },
+}
 
-  useEffect(() => {
-    if (index < text.length) {
-      const timer = setTimeout(() => {
-        setDisplayedText((prev) => prev + text[index]);
-        setIndex((prev) => prev + 1);
-      }, speed);
-
-      return () => clearTimeout(timer);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, text, speed]);
-
-  return <div style={textStyle}>{displayedText}</div>;
-};
+const MotionShow = ({ text, textStyle, className }) => (
+  <motion.div 
+    className={className} 
+    initial="hidden"
+    whileInView="reveal"
+    transition={{ staggerChildren: 0.02 }}
+  >
+    {text.map((char) => (
+      <motion.span 
+        key={char}
+        style={textStyle}
+        transition={{ duration: 0.5 }} 
+        variants={charVariants}
+      >
+        {char}
+      </motion.span>
+    ))}
+  </motion.div>
+)
 
 const HomePage = () => {
-	const TYPING_SPEED = 50;
-	const title = "Hi there! I'm";
-	const name = "Prathamesh.";
-	const jobTitle = "Full-Stack Developer @ Suncorp Group";
-	const [displayedTitle, setDisplatedTitle] = useState("");
-	const [displayedName, setDisplatedName] = useState("");
-	const [displayedJobTitle, setDisplatedJobTitle] = useState("");
+	const title = splitStringUsingRegex("Hi there! I'm");
+	const name = splitStringUsingRegex("Prathamesh 👋");
+	const jobTitle = splitStringUsingRegex("Full-Stack Developer @ Suncorp Group");
 	const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
@@ -57,35 +61,9 @@ const HomePage = () => {
 			<div class='d-flex flex-direction justify-content-around fill'>
 				<div class="mx-auto my-auto text-section">
 					<div class='d-flex flex-column left-section text-alignment'>
-						<div class="title-size mb-0">
-							<TypewriterEffect 
-								text={title}
-								displayedText={displayedTitle} 
-								setDisplayedText={setDisplatedTitle} 
-								speed={TYPING_SPEED} 
-							/>
-						</div>
-						<div class='large-heading mb-0'>
-              { (title === displayedTitle) &&
-                <TypewriterEffect 
-                  text={name} 
-                  displayedText={displayedName} 
-                  setDisplayedText={setDisplatedName} 
-                  speed={TYPING_SPEED} 
-                />
-              }
-						</div>
-						<div class={`job-title-size mt-2`}>
-              { (name === displayedName) &&
-                <TypewriterEffect 
-                  text={jobTitle} 
-                  textStyle={getSpecialTextColorClass()}
-                  displayedText={displayedJobTitle} 
-                  setDisplayedText={setDisplatedJobTitle} 
-                  speed={TYPING_SPEED} 
-                />
-              }
-            </div>
+						<MotionShow text={title} className="title-size mb-0" />
+            <MotionShow text={name} className="large-heading mb-0" />
+            <MotionShow text={jobTitle} textStyle={getSpecialTextColorClass()} className="job-title-size mt-2" />
 					</div>
 				</div>
 				<div class="mx-auto my-auto">
