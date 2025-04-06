@@ -15,39 +15,43 @@ const charVariants = {
   reveal: { opacity: 1 },
 }
 
-const MotionShow = ({ text, textStyle, className }) => (
-  <motion.div 
-    className={className} 
+const MotionShow = ({ text }) => (
+  <motion.div  
     initial="hidden"
     whileInView="reveal"
-    transition={{ staggerChildren: 0.02 }}
+    transition={{ staggerChildren: 0.04 }}
   >
-    {text.map((char) => (
-      <motion.span 
-        key={char}
-        style={textStyle}
-        transition={{ duration: 0.5 }} 
-        variants={charVariants}
-      >
-        {char}
-      </motion.span>
-    ))}
+    {text.map(({ character, className, textStyle }, index) =>
+      character === 'BREAK' ? (
+        <br key={index} />
+      ) : (
+        <motion.span
+          key={index}
+          className={className}
+          variants={charVariants}
+          transition={{ duration: 0.5 }}
+          style={textStyle}
+        >
+          {character}
+        </motion.span>
+      )
+    )}
   </motion.div>
 )
 
 const HomePage = () => {
-	const title = splitStringUsingRegex("Hi there! I'm");
-	const name = splitStringUsingRegex("Prathamesh 👋");
-	const jobTitle = splitStringUsingRegex("Full-Stack Developer @ Suncorp Group");
+	let title = splitStringUsingRegex("Hi there! I'm", "title-size mb-0");
+  title.push({ character: 'BREAK' });
+	let name = splitStringUsingRegex("Prathamesh 👋", "large-heading mb-0");
+  name.push({ character: 'BREAK' });
+	let jobTitle = splitStringUsingRegex("Full-Stack Developer @ Suncorp Group", "job-title-size mt-2", getSpecialTextColorClass());
+  const motionText = title.concat(name).concat(jobTitle);
 	const [selectedImage, setSelectedImage] = useState(null);
 
-  useEffect(() => {
+	useEffect(() => {
     const PAGE_TITLE = "Home";
     document.title = PAGE_TITLE;
     trackPageView(PAGE_TITLE);
-  }, []);
-
-	useEffect(() => {
 		const choices = [Me, Meditation, Laugh, Surprise, Thinking];
 		const selection = choices[Math.floor(Math.random() * choices.length)];
 		if (selection !== selectedImage) {
@@ -61,9 +65,7 @@ const HomePage = () => {
 			<div class='d-flex flex-direction justify-content-around fill'>
 				<div class="mx-auto my-auto text-section">
 					<div class='d-flex flex-column left-section text-alignment'>
-						<MotionShow text={title} className="title-size mb-0" />
-            <MotionShow text={name} className="large-heading mb-0" />
-            <MotionShow text={jobTitle} textStyle={getSpecialTextColorClass()} className="job-title-size mt-2" />
+						<MotionShow text={motionText} />
 					</div>
 				</div>
 				<div class="mx-auto my-auto">

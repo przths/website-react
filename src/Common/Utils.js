@@ -46,13 +46,17 @@ export function getSpecialTextColorClass() {
   }
 }
 
-export function splitStringUsingRegex(inputString) {
+export function splitStringUsingRegex(inputString, className, textStyle) {
   const characters = [];
   const regex = /[\s\S]/gu;
 
   let match;
   while ((match = regex.exec(inputString)) !== null) {
-    characters.push(match[0]);
+    characters.push({
+      character: match[0],
+      className,
+      textStyle,
+    });
   }
 
   return characters;
