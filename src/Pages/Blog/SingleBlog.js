@@ -38,15 +38,18 @@ const SingleBlogPage = ({ customSlug = null }) => {
     }, [slug]);
 
     return (
-      <>
+      <div>
         { loading && 
             <div class="d-flex justify-content-center">
                 <div class="spinner-border" role="status" />
             </div>
         }
         { blogData && 
-            <div class="d-flex flex-direction mt-3 mb-4">
-              <RoundCard style={{ 'max-width': `${isMobileDevice() ? '90vw' : '50vw'}`, }} className="mx-auto">
+            <div class="d-flex flex-direction mt-3">
+              <RoundCard 
+                style={{ 'max-width': `${isMobileDevice() ? '90vw' : '50vw'}`, }} 
+                className="mx-auto"
+              >
                 <Image
                   src={blogData.coverPhoto.url} 
                   className="card-img-top blog-card-img loading" 
@@ -67,7 +70,7 @@ const SingleBlogPage = ({ customSlug = null }) => {
               </RoundCard>
             </div>
         }
-      </>
+      </div>
     );
 }
 

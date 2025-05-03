@@ -76,7 +76,6 @@ export const SimpleButtonSelect = styled.button`
     cursor: pointer;
     color: ${props => props.textColor};
     &:hover {
-        color: #000000;
         font-weight: 600;
     }   
 `
