@@ -10,6 +10,7 @@ import {
   RESUME_PAGE_URL,
   BASELINE_URL,
   ABOUT_ME_PAGE_URL,
+  APPLICATION_DARKMODE_KEY,
 } from "./Common/Constants";
 import HomePage from "./Pages/Home/Home";
 import PortfolioPage from "./Pages/Portfolio/Portfolio";
@@ -18,15 +19,34 @@ import SingleBlogPage from "./Pages/Blog/SingleBlog";
 import AboutMePage from "./Pages/AboutMe/AboutMe";
 import { initializeAnalytics } from "./Common/Analytics";
 import ResumePage from "./Pages/Resume/Resume";
-import { getRandomBackgroundColor } from "./Common/Utils";
 import { ColorContext } from "./Common/Context";
+import PageContainer from "./Components/PageContainer";
+
+const RouteConfig = ({ children, darkMode, setDarkMode }) => 
+  <ColorContext.Provider value={darkMode}>
+    <PageContainer setDarkMode={setDarkMode}>
+      { children }
+    </PageContainer>
+  </ColorContext.Provider>
 
 function App() {
-  const [backgroundColor] = useState(getRandomBackgroundColor());
-  
+  const [darkMode, setDarkMode] = useState(
+    JSON.parse(window.sessionStorage.getItem(APPLICATION_DARKMODE_KEY)) || false
+  );
+
   useEffect(() => {
     initializeAnalytics()
   }, []);
+
+  useEffect(() => {
+    document.getElementsByTagName('body')[0].style.transition = "background-color 0.5s ease";
+    if (darkMode) {
+      document.getElementsByTagName('body')[0].style.backgroundColor = "#2b3036";
+    } else {
+      document.getElementsByTagName('body')[0].style.backgroundColor = "#ffffff";
+    }
+    window.sessionStorage.setItem(APPLICATION_DARKMODE_KEY, darkMode);
+  }, [darkMode]);
 
   return (
     <BrowserRouter basename={BASELINE_URL}>
@@ -35,39 +55,51 @@ function App() {
           <Route 
             path={path} 
             element={
-              <ColorContext.Provider value={backgroundColor}>
+              <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
                 <HomePage />
-              </ColorContext.Provider>
+              </RouteConfig>
             } 
             key={index} />
         )}
         <Route 
           path={PORTFOLIO_PAGE_URL} 
           element={
-            <ColorContext.Provider value={backgroundColor}>
+            <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
               <PortfolioPage />
-            </ColorContext.Provider>
+            </RouteConfig>
           } 
         />
         <Route 
           path={BLOG_PAGE_URL} 
           element={
-            <ColorContext.Provider value={backgroundColor}>
+            <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
               <BlogPage />
-            </ColorContext.Provider>
+            </RouteConfig>
           } 
         />
         <Route 
           path={`${BLOG_PAGE_URL}/:slug`} 
-          element={<SingleBlogPage />} 
+          element={
+            <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
+              <SingleBlogPage />
+            </RouteConfig>
+          } 
         />
         <Route 
           path={RESUME_PAGE_URL} 
-          element={<ResumePage />} 
+          element={
+            <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
+              <ResumePage />
+            </RouteConfig>
+          } 
         />
         <Route 
           path={ABOUT_ME_PAGE_URL} 
-          element={<AboutMePage />} 
+          element={
+            <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
+              <AboutMePage />
+            </RouteConfig>
+          } 
         />
       </Routes>
     </BrowserRouter>

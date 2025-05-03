@@ -24,7 +24,7 @@ export function isMobileDevice() {
     return window.innerWidth <= 450;
 }
 
-export function getRandomBackgroundColor() {
+export function getThemeColor() {
   return 'linear-gradient(145deg, #fffbf0, #f9e0d4)';
   /*
     const colors = [

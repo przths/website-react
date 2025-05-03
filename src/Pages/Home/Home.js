@@ -5,7 +5,6 @@ import Meditation from "../../Images/meditation.png";
 import Laugh from "../../Images/laugh.png";
 import Surprise from "../../Images/surprise.png";
 import Thinking from "../../Images/thinking.png";
-import PageHeader from '../../Components/PageHeader';
 import { getSpecialTextColorClass, splitStringUsingRegex } from '../../Common/Utils';
 import { trackPageView } from '../../Common/Analytics';
 import { motion } from 'framer-motion';
@@ -42,9 +41,11 @@ const MotionShow = ({ text }) => (
 const HomePage = () => {
 	let title = splitStringUsingRegex("Hi there! I'm", "title-size mb-0");
   title.push({ character: 'BREAK' });
+
 	let name = splitStringUsingRegex("Prathamesh 👋", "large-heading mb-0");
   name.push({ character: 'BREAK' });
-	let jobTitle = splitStringUsingRegex("Full-Stack Developer @ Suncorp Group", "job-title-size mt-2", getSpecialTextColorClass());
+	
+  let jobTitle = splitStringUsingRegex("Full-Stack Developer @ Suncorp Group", "job-title-size mt-2", getSpecialTextColorClass());
   const motionText = title.concat(name).concat(jobTitle);
 	const [selectedImage, setSelectedImage] = useState(null);
 
@@ -61,24 +62,22 @@ const HomePage = () => {
 	}, []);
 
 	return (
-		<PageHeader>
-			<div class='d-flex flex-direction justify-content-around fill'>
-				<div class="mx-auto my-auto text-section">
-					<div class='d-flex flex-column left-section text-alignment'>
-						<MotionShow text={motionText} />
-					</div>
-				</div>
-				<div class="mx-auto my-auto">
-					{selectedImage && 
-						<img
-							src={selectedImage}
-							className="image-size d-inline-block align-top"
-							alt="React Bootstrap logo"
-						/>
-					}
-				</div>
-			</div>
-		</PageHeader>
+    <div class='d-flex flex-direction justify-content-around fill'>
+      <div class="mx-auto my-auto text-section">
+        <div class='d-flex flex-column left-section text-alignment'>
+          <MotionShow text={motionText} />
+        </div>
+      </div>
+      <div class="mx-auto my-auto">
+        {selectedImage && 
+          <img
+            src={selectedImage}
+            className="image-size d-inline-block align-top"
+            alt="React Bootstrap logo"
+          />
+        }
+      </div>
+    </div>
 	);
 }
 

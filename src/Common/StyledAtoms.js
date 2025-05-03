@@ -2,10 +2,9 @@ import styled from 'styled-components';
 
 export const HomePageContainer = styled.div`
   transition: background-color 0.5s ease;
-  background-color: ${props => props.backgroundColor};
   color: ${props => props.textColor};
   width: 100vw;
-  height: auto;
+  height: 100vh;
 `
 
 export const HeaderContainer = styled.div`

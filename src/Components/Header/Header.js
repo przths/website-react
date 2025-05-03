@@ -22,7 +22,7 @@ const NavButton = (props) => {
   let homePathSet = false;
 	if (urlPathname === specifiedPath) {
     homePathSet = true;
-		onClick = () =>  navigate(HOME_PAGE_URL);
+	  onClick = () =>  navigate(HOME_PAGE_URL);
 	} else {
 		onClick = () => navigate(specifiedPath);
 	}
@@ -48,44 +48,44 @@ const NavButton = (props) => {
 }
 
 const HomeHeader = ({ textColor, setDarkMode }) => {
-    return (
-      <Navbar>
-        <Container>
-          <Navbar.Brand>
-            <img
-              src={CloudMe}
-              /*onClick={() => setDarkMode((darkMode) => !darkMode)}*/
-              width="75"
-              height="75"
-              className="d-inline-block align-top"
-              alt="React Bootstrap logo"
-            />
-          </Navbar.Brand>
-          <Nav className={`${isMobileDevice() ? 'flex-fill justify-content-center' : 'justify-content-end '}`}>
-            <NavButton
-                text="Portfolio"
-                textColor={textColor}
-                pathname={PORTFOLIO_PAGE_URL}
-            />
-            <NavButton
-                text="Blog"
-                textColor={textColor}
-                pathname={BLOG_PAGE_URL}
-            />
-            <NavButton
-                text="Resume"
-                textColor={textColor}
-                pathname={RESUME_PAGE_URL}
-            />
-            <NavButton
-                text="About me"
-                textColor={textColor}
-                pathname={ABOUT_ME_PAGE_URL}
-            />
-          </Nav>
-        </Container>
-      </Navbar>
-    );
+  return (
+    <Navbar>
+      <Container>
+        <Navbar.Brand>
+          <img
+            src={CloudMe}
+            onClick={() => setDarkMode((darkMode) => !darkMode)}
+            width="75"
+            height="75"
+            className="d-inline-block align-top"
+            alt="React Bootstrap logo"
+          />
+        </Navbar.Brand>
+        <Nav className={`${isMobileDevice() ? 'flex-fill justify-content-center' : 'justify-content-end '}`}>
+          <NavButton
+              text="Portfolio"
+              textColor={textColor}
+              pathname={PORTFOLIO_PAGE_URL}
+          />
+          <NavButton
+              text="Blog"
+              textColor={textColor}
+              pathname={BLOG_PAGE_URL}
+          />
+          <NavButton
+              text="Resume"
+              textColor={textColor}
+              pathname={RESUME_PAGE_URL}
+          />
+          <NavButton
+              text="About me"
+              textColor={textColor}
+              pathname={ABOUT_ME_PAGE_URL}
+          />
+        </Nav>
+      </Container>
+    </Navbar>
+  );
 }
 
 export default HomeHeader;

@@ -5,7 +5,6 @@ import _ from "lodash";
 import { Image } from "../../Components/Common/Common";
 import { getBlogData } from "../../Common/Api";
 import { BLOG_DETAILS_GRAPHQL_QUERY } from "../../Common/GraphQL";
-import PageHeader from "../../Components/PageHeader";
 import sanitize from "sanitize-html";
 import { RoundCard } from "../../Components/Common/Common";
 import { formatTimestamp, isMobileDevice } from "../../Common/Utils";
@@ -39,36 +38,36 @@ const SingleBlogPage = ({ customSlug = null }) => {
     }, [slug]);
 
     return (
-        <PageHeader>
-            { loading && 
-                <div class="d-flex justify-content-center">
-                    <div class="spinner-border" role="status" />
+      <>
+        { loading && 
+            <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status" />
+            </div>
+        }
+        { blogData && 
+            <div class="d-flex flex-direction mt-3 mb-4">
+              <RoundCard style={{ 'max-width': `${isMobileDevice() ? '90vw' : '50vw'}`, }} className="mx-auto">
+                <Image
+                  src={blogData.coverPhoto.url} 
+                  className="card-img-top blog-card-img loading" 
+                  width={blogData.coverPhoto.width}
+                  height={blogData.coverPhoto.height}
+                />
+                <div class="mt-4">
+                  <h3 className="mb-4">
+                    <strong>{blogData.title}</strong>
+                  </h3>
+                  <p dangerouslySetInnerHTML={{__html: sanitize(blogData.content.html)}} />
+                  <p class="card-text">
+                    <small class="text-muted">
+                      Published: {formatTimestamp(blogData.publishDate)}
+                    </small>
+                  </p>
                 </div>
-            }
-            { blogData && 
-                <div class="d-flex flex-direction mt-3 mb-4">
-                  <RoundCard style={{ 'max-width': `${isMobileDevice() ? '90vw' : '50vw'}`, }} className="mx-auto">
-                    <Image
-                      src={blogData.coverPhoto.url} 
-                      className="card-img-top blog-card-img loading" 
-                      width={blogData.coverPhoto.width}
-                      height={blogData.coverPhoto.height}
-                    />
-                    <div class="mt-4">
-                      <h3 className="mb-4">
-                        <strong>{blogData.title}</strong>
-                      </h3>
-                      <p dangerouslySetInnerHTML={{__html: sanitize(blogData.content.html)}} />
-                      <p class="card-text">
-                        <small class="text-muted">
-                          Published: {formatTimestamp(blogData.publishDate)}
-                        </small>
-                      </p>
-                    </div>
-                  </RoundCard>
-                </div>
-            }
-        </PageHeader>
+              </RoundCard>
+            </div>
+        }
+      </>
     );
 }
 
