@@ -1,4 +1,5 @@
 import "./Portfolio.css";
+import "../Blog/Blog.css";
 import { Image } from "../../Components/Common/Common";
 import { SimpleButtonSelect } from "../../Common/StyledAtoms";
 import { useContext, useEffect, useState } from "react";
@@ -41,7 +42,7 @@ const PortfolioPage = () => {
 
   return (
     <div class={`d-flex portfolio-container justify-content-between mt-4 ${isMobileDevice() ? 'flex-column' : ''}`}>
-      <div class={`d-flex flex-column left-panel mb-3 ${isMobileDevice() ? 'ms-4' : 'mt-3'}`}>
+      <div class={`d-flex flex-column left-panel ${isMobileDevice() ? 'ms-4' : 'mt-3'}`}>
         <h4 class="mb-2" style={getSpecialTextColorClass()}>
           My Portfolio
         </h4>
@@ -65,7 +66,7 @@ const PortfolioPage = () => {
           </SimpleButtonSelect>
         </div>
       </div>
-      <div class="d-flex flex-wrap mx-auto mb-3 portfolio-card-container">
+      <div class="d-flex flex-wrap mx-auto justify-content-between blog-container mt-3 pb-3">
         { loading && 
           <div class="mx-auto">
             <div class="spinner-border" role="status" />
