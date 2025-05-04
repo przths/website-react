@@ -38,6 +38,10 @@ export function getThemeColor() {
   */
 }
 
+export function getAboutMeThemeColor() {
+  return 'linear-gradient(145deg, #8ee3f5, #b3f6d8)';
+}
+
 export function getSpecialTextColorClass() {
   return {
     'background-image': 'linear-gradient(145deg, #ff416c, #8b5cf6)',

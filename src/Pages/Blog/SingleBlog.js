@@ -7,7 +7,7 @@ import { getBlogData } from "../../Common/Api";
 import { BLOG_DETAILS_GRAPHQL_QUERY } from "../../Common/GraphQL";
 import sanitize from "sanitize-html";
 import { RoundCard } from "../../Components/Common/Common";
-import { formatTimestamp, isMobileDevice } from "../../Common/Utils";
+import { formatTimestamp, getThemeColor, isMobileDevice } from "../../Common/Utils";
 import { trackPageView } from "../../Common/Analytics";
 
 const SingleBlogPage = ({ customSlug = null }) => {
@@ -47,8 +47,9 @@ const SingleBlogPage = ({ customSlug = null }) => {
         { blogData && 
             <div class="d-flex flex-direction mt-3 pb-4">
               <RoundCard 
-                style={{ 'max-width': `${isMobileDevice() ? '90vw' : '50vw'}`, }} 
+                style={{ 'max-width': `${isMobileDevice() ? '90vw' : '50vw'}`, }}
                 className="mx-auto"
+                backgroundColor={getThemeColor()}
               >
                 <Image
                   src={blogData.coverPhoto.url} 

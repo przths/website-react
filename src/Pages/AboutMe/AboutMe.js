@@ -2,7 +2,7 @@ import "./AboutMe.css";
 import { useState, useEffect } from "react";
 import PageContainer from "../../Components/PageContainer";
 import { trackPageView } from "../../Common/Analytics";
-import { isMobileDevice } from "../../Common/Utils";
+import { getAboutMeThemeColor, getThemeColor, isMobileDevice } from "../../Common/Utils";
 import { getBlogData } from "../../Common/Api";
 import sanitize from "sanitize-html";
 import { RoundCard, MiniRoundCard, Image } from "../../Components/Common/Common";
@@ -38,6 +38,7 @@ const AboutMePage = () => {
         <RoundCard 
           style={{ 'width': `${isMobileDevice() ? '90vw' : '50vw'}`, }} 
           className="mx-auto"
+          backgroundColor={getAboutMeThemeColor()}
         >
           <Image
             src={mediaData.posts[0].coverPhoto.url} 

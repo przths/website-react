@@ -53,11 +53,14 @@ const HomePage = () => {
     const PAGE_TITLE = "Home";
     document.title = PAGE_TITLE;
     trackPageView(PAGE_TITLE);
+    /*
 		const choices = [Me, Meditation, Laugh, Surprise, Thinking];
 		const selection = choices[Math.floor(Math.random() * choices.length)];
 		if (selection !== selectedImage) {
 			setSelectedImage(selection);
 		}
+    */
+    setSelectedImage(Laugh);
     // eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

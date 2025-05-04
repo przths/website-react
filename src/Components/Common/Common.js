@@ -56,7 +56,6 @@ export const MiniRoundCard = styled.div`
   margin: 18px;
   padding: 20px;
   border-radius: 30px;
-  background-color: white;
   box-shadow: 4px 4px 12px 4px rgba(0,0,0,0.2);
   color: black;
   background: ${props => props.backgroundColor};
@@ -77,12 +76,16 @@ export const RoundCard = styled.div`
   flex-direction: column;
   padding: 40px;
   border-radius: 50px;
-  background-color: white;
   color: black;
+  background: ${props => props.backgroundColor};
   box-shadow: 4px 4px 12px 4px rgba(0,0,0,0.2);
   transition: 0.3s;
   @media (max-width: 450px) {
     padding: 20px;
     border-radius: 30px;
+  }
+  &:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 6px 6px 12px 6px rgba(0, 0, 0, 0.25);
   }
 `;
