@@ -1,5 +1,6 @@
 import "./Portfolio.css";
 import "../Blog/Blog.css";
+import { Button, Modal, InputGroup, Form } from "react-bootstrap";
 import { Image } from "../../Components/Common/Common";
 import { SimpleButtonSelect } from "../../Common/StyledAtoms";
 import { useContext, useEffect, useState } from "react";
@@ -10,12 +11,45 @@ import { PORTFOLIO_DATA_GRAPHQL_QUERY } from "../../Common/GraphQL";
 import { getBlogData } from "../../Common/Api";
 import { ColorContext } from "../../Common/Context";
 
+const SubscribeModal = ({ show, handleClose }) => {
+  return (
+    <>
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <span style={getSpecialTextColorClass()}>
+              Subscribe for Updates
+            </span>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Subscribe to my newsletter to get updates on my latest projects and paintings!
+          <div class="mt-3"/>
+          Enter your email address below to subscribe.
+          <InputGroup className="mb-3 mt-3">
+            <Form.Control
+              placeholder="iamawesome@gmail.com"
+              aria-label="iamawesome@gmail.com"
+              aria-describedby="basic-addon2"
+            />
+            <Button variant="outline-secondary" id="button-addon2">
+              Subscribe
+            </Button>
+          </InputGroup>
+        </Modal.Body>
+      </Modal>
+    </>
+  );
+}
+
 const PortfolioPage = () => {
   const darkMode = useContext(ColorContext);
   const [projects, setProjects] = useState(true);
   const [paintings, setPaintings] = useState(false);
   const [portfolio, setPortfolio] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [subscribe, setSubscribe] = useState(false);
+  const handleClose = () => setSubscribe(false);
 
   useEffect(() => {
     const PAGE_TITLE = "Portfolio";
@@ -33,11 +67,11 @@ const PortfolioPage = () => {
   }, []);
 
   useEffect(() => {
-      paintings && setProjects(false);
+      paintings && setProjects(false) && setSubscribe(false);
   }, [paintings]);
 
   useEffect(() => {
-      projects && setPaintings(false);
+      projects && setPaintings(false) && setSubscribe(false);
   }, [projects]);
 
   return (
@@ -64,6 +98,16 @@ const PortfolioPage = () => {
           >
             { paintings ? <strong>Paintings</strong> : 'Paintings' }
           </SimpleButtonSelect>
+          <SimpleButtonSelect
+            textColor={darkMode ? '#f9e0d4' : 'black'}
+            className={`${isMobileDevice() ? 'ms-2' : ''}`}
+            onClick={() => {
+                setSubscribe(true);
+            }}
+          >
+            Subscribe
+          </SimpleButtonSelect>
+          <SubscribeModal show={subscribe} handleClose={handleClose} />
         </div>
       </div>
       <div class="d-flex flex-wrap mx-auto justify-content-between blog-container mt-3 pb-3">
