@@ -12,6 +12,24 @@ import { getBlogData } from "../../Common/Api";
 import { ColorContext } from "../../Common/Context";
 
 const SubscribeModal = ({ show, handleClose }) => {
+  const EMPTY_EMAIL = "EE";
+  const INVALID_EMAIL = "IE";
+  const [error, setError] = useState(null);
+  const [email, setEmail] = useState(null);
+
+  const checkEmailValidation = (email) => {
+    if (email === "") {
+      setError(EMPTY_EMAIL);
+      setEmail(null);
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setError(INVALID_EMAIL);
+      setEmail(null);
+    } else {
+      setError(null);
+      setEmail(email);
+    }
+  }
+
   return (
     <>
       <Modal show={show} onHide={handleClose} centered>
@@ -31,10 +49,36 @@ const SubscribeModal = ({ show, handleClose }) => {
               placeholder="iamawesome@gmail.com"
               aria-label="iamawesome@gmail.com"
               aria-describedby="basic-addon2"
+              isInvalid={!!error}
+              onChange={(e) => {
+                const email = e.target.value;
+                checkEmailValidation(email);
+              }}
             />
-            <Button variant="outline-secondary" id="button-addon2">
+            <Button 
+              id="button-addon2"
+              variant="outline-secondary" 
+              onClick={() => {
+                if (email == null || !!error) {
+                  checkEmailValidation(email);
+                  return;
+                } else {
+                  console.log("Valid email!", email);
+                }
+              }}
+            >
               Subscribe
             </Button>
+            {error === EMPTY_EMAIL && 
+              <Form.Control.Feedback type="invalid">
+                Email address cannot be empty
+              </Form.Control.Feedback>
+            }
+            {error === INVALID_EMAIL && 
+              <Form.Control.Feedback type="invalid">
+                Invalid email address
+              </Form.Control.Feedback>
+            }
           </InputGroup>
         </Modal.Body>
       </Modal>
