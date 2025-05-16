@@ -14,8 +14,24 @@ import { ColorContext } from "../../Common/Context";
 const SubscribeModal = ({ show, handleClose }) => {
   const EMPTY_EMAIL = "EE";
   const INVALID_EMAIL = "IE";
+  const API_CALL_FAILED = "ACF";
+  const EMAIL_ALREADY_SUBSCRIBED = "EAS";
+  const EMAIL_SUCCESSFULLY_SUBSCRIBED = "ESS";
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
   const [email, setEmail] = useState(null);
+
+  useEffect(() => {
+    setError(null);
+    setSuccess(null);
+    setEmail(null);
+  }, [show]);
+
+  useEffect(() => {
+    if (error) {
+      setSuccess(null);
+    }
+  }, [error])
 
   const checkEmailValidation = (email) => {
     if (email === "") {
@@ -50,6 +66,7 @@ const SubscribeModal = ({ show, handleClose }) => {
               aria-label="iamawesome@gmail.com"
               aria-describedby="basic-addon2"
               isInvalid={!!error}
+              isValid={!error && success === EMAIL_SUCCESSFULLY_SUBSCRIBED}
               onChange={(e) => {
                 const email = e.target.value;
                 checkEmailValidation(email);
@@ -58,12 +75,33 @@ const SubscribeModal = ({ show, handleClose }) => {
             <Button 
               id="button-addon2"
               variant="outline-secondary" 
-              onClick={() => {
+              onClick={async () => {
                 if (email == null || !!error) {
                   checkEmailValidation(email);
-                  return;
                 } else {
-                  console.log("Valid email!", email);
+                  const API_ENDPOINT = "https://i9w4oztw1a.execute-api.ap-southeast-2.amazonaws.com/develop/content/subscribe";
+                  const requestBody = {
+                    email: email,
+                    category: "project",
+                  };
+                  const response = await fetch(API_ENDPOINT, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      data: requestBody,
+                    }),
+                  });
+
+                  if (response.ok) {
+                    setError(null);
+                    setSuccess(EMAIL_SUCCESSFULLY_SUBSCRIBED);
+                  } else if (response.status === 403) { 
+                    setError(EMAIL_ALREADY_SUBSCRIBED);
+                  } else {
+                    setError(API_CALL_FAILED);
+                  }
                 }
               }}
             >
@@ -71,12 +109,27 @@ const SubscribeModal = ({ show, handleClose }) => {
             </Button>
             {error === EMPTY_EMAIL && 
               <Form.Control.Feedback type="invalid">
-                Email address cannot be empty
+                Email address cannot be empty.
               </Form.Control.Feedback>
             }
             {error === INVALID_EMAIL && 
               <Form.Control.Feedback type="invalid">
-                Invalid email address
+                Invalid email address.
+              </Form.Control.Feedback>
+            }
+            {error === EMAIL_ALREADY_SUBSCRIBED && 
+              <Form.Control.Feedback type="invalid">
+                Email address already subscribed.
+              </Form.Control.Feedback>
+            }
+            {error === API_CALL_FAILED && 
+              <Form.Control.Feedback type="invalid">
+                API call failed. Please try again.
+              </Form.Control.Feedback>
+            }
+            {success === EMAIL_SUCCESSFULLY_SUBSCRIBED &&
+              <Form.Control.Feedback>
+                Email address successfully subscribed.
               </Form.Control.Feedback>
             }
           </InputGroup>
