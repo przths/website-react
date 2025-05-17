@@ -5,23 +5,20 @@ import { Button } from "react-bootstrap";
 import { Image } from "../../Components/Common/Common";
 import Thinking from "../../Images/thinking.png";
 import "../Blog/Blog.css";
-import { hashStringSHA256, sanitizeText } from "../../Common/Utils";
+import { sanitizeText } from "../../Common/Utils";
 
 const UnsubscribePage = () => {
   const urlParams = new URLSearchParams(useLocation().search);
   const category = sanitizeText(urlParams.get('category'));
   const emailAddress = sanitizeText(urlParams.get('email'));
   const signature = sanitizeText(urlParams.get('signature'));
-
-  const expectedPayload = `category=${category}&email=${emailAddress}`;
-  const expectedSignature = hashStringSHA256(expectedPayload);
   
   // http://localhost:3000/website-react/#/unsubscribe?category=project&email=random@gmail.com&signature=d2ad4da985189dea315c3ae0d99ed0a101e5ec7e59d4abbe5fda6356dbcbe4c7
 
   return (
     <div class="d-flex flex-column justify-content-center" style={{ height: '80vh' }}>
       <MiniRoundCard 
-        style={{ 'max-width': `${isMobileDevice() ? '90vw' : '26vw'}`}}
+        style={{ 'maxWidth': `${isMobileDevice() ? '90vw' : '26vw'}`}}
         className="mx-auto my-auto"
         backgroundColor={getThemeColor()}
         onClick={() => {}}
@@ -43,9 +40,8 @@ const UnsubscribePage = () => {
             <Button 
               variant="danger" 
               className="mt-1 mx-auto flex-fill"
-              disabled={expectedSignature !== signature}
             >
-              {expectedSignature === signature ? 'Unsubscribe' : 'Cannot Unsubscribe - Link Corrupted'}
+              Unsubscribe
             </Button>
           </div>
         </div>

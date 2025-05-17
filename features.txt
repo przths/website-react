@@ -3,3 +3,4 @@ Features to add in:
 - Ability to unsubscribe to emails on the confirmation email or a publish email
 - Extra security settings for the AWS Lambda endpoints. E.g., CORS domain restriction
 - Add a restriction on total subscribed emails in the lambda. E.g., if there are 40 entries already
+- Add an authorize endpoint for the unsubscribe feature

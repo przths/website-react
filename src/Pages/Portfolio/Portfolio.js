@@ -89,7 +89,7 @@ const PortfolioPage = () => {
             return (
               <MiniRoundCard 
                 key={index} 
-                style={{ 'max-width': `${isMobileDevice() ? '90vw' : '26vw'}`}}
+                style={{ 'maxWidth': `${isMobileDevice() ? '90vw' : '26vw'}`}}
                 className="m-3"
                 backgroundColor={getThemeColor()}
                 onClick={() => window.open(project.projectUrl, "_blank")}
