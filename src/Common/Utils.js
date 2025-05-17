@@ -1,3 +1,5 @@
+import SHA256 from 'crypto-js/sha256';
+
 export function formatTimestamp(timestamp) {
     const date = new Date(timestamp);
     
@@ -64,4 +66,15 @@ export function splitStringUsingRegex(inputString, className, textStyle) {
   }
 
   return characters;
+}
+
+export function hashStringSHA256(inputString) {
+  return SHA256(inputString).toString();
+}
+
+export function sanitizeText(input) {
+  if (typeof input !== 'string') return '';
+  const trimmed = input.trim();
+  const sanitized = trimmed.replace(/[^\p{L}\d@._%+\-]/gu, '');
+  return sanitized;
 }

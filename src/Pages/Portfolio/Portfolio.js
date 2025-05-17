@@ -96,7 +96,7 @@ const PortfolioPage = () => {
               >
                 <Image 
                   src={project.projectImage.url} 
-                  className="card-img-top blog-card-img-small loading"
+                  className="blog-card-img-small loading"
                   width={project.projectImage.width}
                   height={project.projectImage.height}
                 />

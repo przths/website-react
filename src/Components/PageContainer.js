@@ -6,7 +6,6 @@ import { ColorContext } from "../Common/Context";
 const PageContainer = ({ children, setDarkMode }) => {
   const darkMode = useContext(ColorContext);
   const colorClass = darkMode ? 'white' : 'black';
-  console.log('darkMode', darkMode);
 
   return (
     <HomePageContainer textColor={colorClass}>

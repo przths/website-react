@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route, HashRouter } from 'react-router-dom';
 import { 
@@ -10,6 +9,7 @@ import {
   RESUME_PAGE_URL,
   ABOUT_ME_PAGE_URL,
   APPLICATION_DARKMODE_KEY,
+  UNSUBSCRIBE_PAGE_URL,
 } from "./Common/Constants";
 import HomePage from "./Pages/Home/Home";
 import PortfolioPage from "./Pages/Portfolio/Portfolio";
@@ -20,6 +20,7 @@ import { initializeAnalytics } from "./Common/Analytics";
 import ResumePage from "./Pages/Resume/Resume";
 import { ColorContext } from "./Common/Context";
 import PageContainer from "./Components/PageContainer";
+import UnsubscribePage from "./Pages/Unsubscribe/Unsubscribe";
 
 const RouteConfig = ({ children, darkMode, setDarkMode }) => 
   <ColorContext.Provider value={darkMode}>
@@ -97,6 +98,14 @@ function App() {
           element={
             <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
               <AboutMePage />
+            </RouteConfig>
+          } 
+        />
+        <Route 
+          path={UNSUBSCRIBE_PAGE_URL} 
+          element={
+            <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
+              <UnsubscribePage />
             </RouteConfig>
           } 
         />
