@@ -2,7 +2,7 @@ import "./Blog.css";
 import { useContext, useEffect, useState } from "react";
 import { BlogCard } from "../../Components/Common/Common";
 import { getBlogData } from "../../Common/Api";
-import { BLOG_SUMMARY_GRAPHQL_QUERY } from "../../Common/GraphQL";
+import { BLOG_SUMMARY_GRAPHQL_QUERY } from "../../Common/GraphQLQueries";
 import { trackPageView } from "../../Common/Analytics";
 import { ColorContext } from "../../Common/Context";
 

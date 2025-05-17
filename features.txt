@@ -1,0 +1,5 @@
+Features to add in:
+- Send a confirmation email when someone signs up 
+- Ability to unsubscribe to emails on the confirmation email or a publish email
+- Extra security settings for the AWS Lambda endpoints. E.g., CORS domain restriction
+- Add a restriction on total subscribed emails in the lambda. E.g., if there are 40 entries already

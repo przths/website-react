@@ -6,7 +6,7 @@ import { getAboutMeThemeColor, getThemeColor, isMobileDevice } from "../../Commo
 import { getBlogData } from "../../Common/Api";
 import sanitize from "sanitize-html";
 import { RoundCard, MiniRoundCard, Image } from "../../Components/Common/Common";
-import { ABOUT_ME_DATA_GRAPHQL_QUERY } from "../../Common/GraphQL";
+import { ABOUT_ME_DATA_GRAPHQL_QUERY } from "../../Common/GraphQLQueries";
 
 const AboutMePage = () => {
   const [mediaData, setMediaData] = useState(null);

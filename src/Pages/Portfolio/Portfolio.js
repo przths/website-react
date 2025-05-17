@@ -1,143 +1,15 @@
 import "./Portfolio.css";
 import "../Blog/Blog.css";
-import { Button, Modal, InputGroup, Form } from "react-bootstrap";
 import { Image } from "../../Components/Common/Common";
 import { SimpleButtonSelect } from "../../Common/StyledAtoms";
 import { useContext, useEffect, useState } from "react";
 import { MiniRoundCard } from "../../Components/Common/Common";
 import { trackPageView } from "../../Common/Analytics";
 import { getSpecialTextColorClass, getThemeColor, isMobileDevice } from "../../Common/Utils";
-import { PORTFOLIO_DATA_GRAPHQL_QUERY } from "../../Common/GraphQL";
+import { PORTFOLIO_DATA_GRAPHQL_QUERY } from "../../Common/GraphQLQueries";
 import { getBlogData } from "../../Common/Api";
 import { ColorContext } from "../../Common/Context";
-
-const SubscribeModal = ({ show, handleClose }) => {
-  const EMPTY_EMAIL = "EE";
-  const INVALID_EMAIL = "IE";
-  const API_CALL_FAILED = "ACF";
-  const EMAIL_ALREADY_SUBSCRIBED = "EAS";
-  const EMAIL_SUCCESSFULLY_SUBSCRIBED = "ESS";
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
-  const [email, setEmail] = useState(null);
-
-  useEffect(() => {
-    setError(null);
-    setSuccess(null);
-    setEmail(null);
-  }, [show]);
-
-  useEffect(() => {
-    if (error) {
-      setSuccess(null);
-    }
-  }, [error])
-
-  const checkEmailValidation = (email) => {
-    if (email === "") {
-      setError(EMPTY_EMAIL);
-      setEmail(null);
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      setError(INVALID_EMAIL);
-      setEmail(null);
-    } else {
-      setError(null);
-      setEmail(email);
-    }
-  }
-
-  return (
-    <>
-      <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>
-            <span style={getSpecialTextColorClass()}>
-              Subscribe for Updates
-            </span>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Subscribe to my newsletter to get updates on my latest projects and paintings!
-          <div class="mt-3"/>
-          Enter your email address below to subscribe.
-          <InputGroup className="mb-3 mt-3">
-            <Form.Control
-              placeholder="iamawesome@gmail.com"
-              aria-label="iamawesome@gmail.com"
-              aria-describedby="basic-addon2"
-              isInvalid={!!error}
-              isValid={!error && success === EMAIL_SUCCESSFULLY_SUBSCRIBED}
-              onChange={(e) => {
-                const email = e.target.value;
-                checkEmailValidation(email);
-              }}
-            />
-            <Button 
-              id="button-addon2"
-              variant="outline-secondary" 
-              onClick={async () => {
-                if (email == null || !!error) {
-                  checkEmailValidation(email);
-                } else {
-                  const API_ENDPOINT = "https://i9w4oztw1a.execute-api.ap-southeast-2.amazonaws.com/develop/content/subscribe";
-                  const requestBody = {
-                    email: email,
-                    category: "project",
-                  };
-                  const response = await fetch(API_ENDPOINT, {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                      data: requestBody,
-                    }),
-                  });
-
-                  if (response.ok) {
-                    setError(null);
-                    setSuccess(EMAIL_SUCCESSFULLY_SUBSCRIBED);
-                  } else if (response.status === 403) { 
-                    setError(EMAIL_ALREADY_SUBSCRIBED);
-                  } else {
-                    setError(API_CALL_FAILED);
-                  }
-                }
-              }}
-            >
-              Subscribe
-            </Button>
-            {error === EMPTY_EMAIL && 
-              <Form.Control.Feedback type="invalid">
-                Email address cannot be empty.
-              </Form.Control.Feedback>
-            }
-            {error === INVALID_EMAIL && 
-              <Form.Control.Feedback type="invalid">
-                Invalid email address.
-              </Form.Control.Feedback>
-            }
-            {error === EMAIL_ALREADY_SUBSCRIBED && 
-              <Form.Control.Feedback type="invalid">
-                Email address already subscribed.
-              </Form.Control.Feedback>
-            }
-            {error === API_CALL_FAILED && 
-              <Form.Control.Feedback type="invalid">
-                API call failed. Please try again.
-              </Form.Control.Feedback>
-            }
-            {success === EMAIL_SUCCESSFULLY_SUBSCRIBED &&
-              <Form.Control.Feedback>
-                Email address successfully subscribed.
-              </Form.Control.Feedback>
-            }
-          </InputGroup>
-        </Modal.Body>
-      </Modal>
-    </>
-  );
-}
+import SubscribeModal from "../../Components/SubscribeModal";
 
 const PortfolioPage = () => {
   const darkMode = useContext(ColorContext);

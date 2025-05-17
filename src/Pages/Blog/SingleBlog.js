@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import _ from "lodash";
 import { Image } from "../../Components/Common/Common";
 import { getBlogData } from "../../Common/Api";
-import { BLOG_DETAILS_GRAPHQL_QUERY } from "../../Common/GraphQL";
+import { BLOG_DETAILS_GRAPHQL_QUERY } from "../../Common/GraphQLQueries";
 import sanitize from "sanitize-html";
 import { RoundCard } from "../../Components/Common/Common";
 import { formatTimestamp, getThemeColor, isMobileDevice } from "../../Common/Utils";
