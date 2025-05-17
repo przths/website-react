@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import { 
   ROOT_PAGE_URL, 
   HOME_PAGE_URL, 
   PORTFOLIO_PAGE_URL, 
   BLOG_PAGE_URL,
   RESUME_PAGE_URL,
-  BASELINE_URL,
   ABOUT_ME_PAGE_URL,
   APPLICATION_DARKMODE_KEY,
 } from "./Common/Constants";
@@ -49,7 +48,7 @@ function App() {
   }, [darkMode]);
 
   return (
-    <BrowserRouter basename={BASELINE_URL}>
+    <HashRouter>
       <Routes>
         {[ROOT_PAGE_URL, HOME_PAGE_URL].map((path, index) => 
           <Route 
@@ -102,7 +101,7 @@ function App() {
           } 
         />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
