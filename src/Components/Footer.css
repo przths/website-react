@@ -1,0 +1,58 @@
+.site-footer {
+  background: #111;
+  color: #fff;
+  padding: 24px 0 12px 0;
+  text-align: center;
+  position: static;
+  width: 100vw;
+  min-height: 60px;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-content {
+  flex: 1 0 auto;
+}
+
+.footer-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.footer-icon {
+  margin-left: 12px;
+  margin-right: 12px;
+  color: #fff;
+  transition: color 0.2s;
+  font-size: 1.5rem;
+}
+
+.footer-icon:hover {
+  color: #f9e0d4;
+}
