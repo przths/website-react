@@ -4,7 +4,6 @@ export const HomePageContainer = styled.div`
   transition: background-color 0.5s ease;
   color: ${props => props.textColor};
   width: 100vw;
-  height: 100vh;
 `
 
 export const HeaderContainer = styled.div`

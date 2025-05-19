@@ -21,6 +21,7 @@ import ResumePage from "./Pages/Resume/Resume";
 import { ColorContext } from "./Common/Context";
 import PageContainer from "./Components/PageContainer";
 import UnsubscribePage from "./Pages/Unsubscribe/Unsubscribe";
+import Footer from './Components/Footer/Footer';
 
 const RouteConfig = ({ children, darkMode, setDarkMode }) => 
   <ColorContext.Provider value={darkMode}>
@@ -49,68 +50,77 @@ function App() {
   }, [darkMode]);
 
   return (
-    <HashRouter>
-      <Routes>
-        {[ROOT_PAGE_URL, HOME_PAGE_URL].map((path, index) => 
-          <Route 
-            path={path} 
-            element={
-              <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
-                <HomePage />
-              </RouteConfig>
-            } 
-            key={index} />
-        )}
-        <Route 
-          path={PORTFOLIO_PAGE_URL} 
-          element={
-            <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
-              <PortfolioPage />
-            </RouteConfig>
-          } 
-        />
-        <Route 
-          path={BLOG_PAGE_URL} 
-          element={
-            <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
-              <BlogPage />
-            </RouteConfig>
-          } 
-        />
-        <Route 
-          path={`${BLOG_PAGE_URL}/:slug`} 
-          element={
-            <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
-              <SingleBlogPage />
-            </RouteConfig>
-          } 
-        />
-        <Route 
-          path={RESUME_PAGE_URL} 
-          element={
-            <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
-              <ResumePage />
-            </RouteConfig>
-          } 
-        />
-        <Route 
-          path={ABOUT_ME_PAGE_URL} 
-          element={
-            <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
-              <AboutMePage />
-            </RouteConfig>
-          } 
-        />
-        <Route 
-          path={UNSUBSCRIBE_PAGE_URL} 
-          element={
-            <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
-              <UnsubscribePage />
-            </RouteConfig>
-          } 
-        />
-      </Routes>
-    </HashRouter>
+    <div style={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      minHeight: '100vh'
+    }}>
+      <HashRouter>
+        <div style={{ flex: '1 0 auto' }}>
+          <Routes>
+            {[ROOT_PAGE_URL, HOME_PAGE_URL].map((path, index) => 
+              <Route 
+                path={path} 
+                element={
+                  <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
+                    <HomePage />
+                  </RouteConfig>
+                } 
+                key={index} />
+            )}
+            <Route 
+              path={PORTFOLIO_PAGE_URL} 
+              element={
+                <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
+                  <PortfolioPage />
+                </RouteConfig>
+              } 
+            />
+            <Route 
+              path={BLOG_PAGE_URL} 
+              element={
+                <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
+                  <BlogPage />
+                </RouteConfig>
+              } 
+            />
+            <Route 
+              path={`${BLOG_PAGE_URL}/:slug`} 
+              element={
+                <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
+                  <SingleBlogPage />
+                </RouteConfig>
+              } 
+            />
+            <Route 
+              path={RESUME_PAGE_URL} 
+              element={
+                <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
+                  <ResumePage />
+                </RouteConfig>
+              } 
+            />
+            <Route 
+              path={ABOUT_ME_PAGE_URL} 
+              element={
+                <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
+                  <AboutMePage />
+                </RouteConfig>
+              } 
+            />
+            <Route 
+              path={UNSUBSCRIBE_PAGE_URL} 
+              element={
+                <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
+                  <UnsubscribePage />
+                </RouteConfig>
+              } 
+            />
+          </Routes>
+        </div>
+        <Footer />
+      </HashRouter>
+    </div>
   );
 }
 
