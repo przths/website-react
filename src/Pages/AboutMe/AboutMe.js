@@ -28,7 +28,7 @@ const AboutMePage = () => {
   }, []);
 
   return (
-    <div className="d-flex flex-direction mt-3 pb-4">
+    <div className="d-flex flex-direction mt-3 pb-4 mb-2">
       { loading && 
         <div class="mx-auto">
           <div class="spinner-border" role="status" />

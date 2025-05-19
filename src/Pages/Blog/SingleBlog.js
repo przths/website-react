@@ -45,7 +45,7 @@ const SingleBlogPage = ({ customSlug = null }) => {
             </div>
         }
         { blogData && 
-            <div class="d-flex flex-direction mt-3 pb-4">
+            <div class="d-flex flex-direction mt-3 pb-4 mb-2">
               <RoundCard 
                 style={{ 'maxWidth': `${isMobileDevice() ? '90vw' : '50vw'}`, }}
                 className="mx-auto"
