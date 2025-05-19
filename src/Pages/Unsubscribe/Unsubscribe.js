@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { MiniRoundCard } from "../../Components/Common/Common";
 import { getThemeColor, isMobileDevice } from "../../Common/Utils";
@@ -6,14 +7,24 @@ import { Image } from "../../Components/Common/Common";
 import Thinking from "../../Images/thinking.png";
 import "../Blog/Blog.css";
 import { sanitizeText } from "../../Common/Utils";
+import { useEffect } from "react";
+import { trackPageView } from "../../Common/Analytics";
+import { postRequest } from "../../Common/Api";
+import { HYDRA_API_UNSUBSCRIBE_URL } from "../../Common/Endpoints";
 
 const UnsubscribePage = () => {
   const urlParams = new URLSearchParams(useLocation().search);
   const category = sanitizeText(urlParams.get('category'));
   const emailAddress = sanitizeText(urlParams.get('email'));
   const signature = sanitizeText(urlParams.get('signature'));
-  
-  // http://localhost:3000/website-react/#/unsubscribe?category=project&email=random@gmail.com&signature=d2ad4da985189dea315c3ae0d99ed0a101e5ec7e59d4abbe5fda6356dbcbe4c7
+  const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState(null);
+
+  useEffect(() => {
+    const PAGE_TITLE = "Unsubscribe";
+    document.title = PAGE_TITLE;
+    trackPageView(PAGE_TITLE);
+  }, []);
 
   return (
     <div class="d-flex flex-column justify-content-center" style={{ height: '80vh' }}>
@@ -38,10 +49,31 @@ const UnsubscribePage = () => {
           </p>
           <div class="d-flex card-text">
             <Button 
-              variant="danger" 
+              variant={response && response.status === 200 ? "success" : "danger"}
               className="mt-1 mx-auto flex-fill"
+              disabled={loading}
+              onClick={async () => {
+                setLoading(true);
+                const requestBody = {
+                  email: emailAddress,
+                  category: category,
+                  signature: signature,
+                };
+                const response = await postRequest(HYDRA_API_UNSUBSCRIBE_URL, requestBody);
+                const data = await response.json();
+                setResponse({
+                  message: data.message.trim(),
+                  status: response.status,
+                });
+              }}
             >
-              Unsubscribe
+              { loading && !response ? 
+                <div class="spinner-border spinner-border-sm" role="status" /> : 
+                response ?
+                  <span>
+                    {response.message.slice(0, -1)} {response.status === 200 ? "✅" : "😵"}
+                  </span> : "Unsubscribe"
+              }
             </Button>
           </div>
         </div>

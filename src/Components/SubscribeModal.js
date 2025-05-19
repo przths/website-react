@@ -3,7 +3,6 @@ import { Modal, Button, InputGroup, Form } from "react-bootstrap";
 import { getSpecialTextColorClass } from "../Common/Utils";
 import { HYDRA_API_SUBSCRIBE_URL } from "../Common/Endpoints";
 import { postRequest } from "../Common/Api";
-import { set } from "lodash";
 
 const SubscribeModal = ({ show, handleClose }) => {
   const EMPTY_EMAIL = "EE";
