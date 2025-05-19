@@ -1,5 +1,5 @@
 .site-footer {
-  background: #111;
+  background: linear-gradient(145deg, #2b3036, #383d45);
   color: #fff;
   padding: 1rem 0;
   width: 100%;
@@ -21,6 +21,7 @@
   gap: 1rem;
 }
 
+/* Update icon colors for dark background */
 .footer-icon {
   color: #fff;
   transition: color 0.2s ease;

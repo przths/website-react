@@ -1,5 +1,5 @@
 .site-footer {
-  background: #111;
+  background-image: linear-gradient(red, yellow);
   color: #fff;
   padding: 24px 0 12px 0;
   text-align: center;
