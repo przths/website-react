@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Routes, Route, HashRouter, useLocation } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import { 
   ROOT_PAGE_URL, 
   HOME_PAGE_URL, 

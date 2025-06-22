@@ -1,8 +1,7 @@
 import "./AboutMe.css";
 import { useState, useEffect } from "react";
-import PageContainer from "../../Components/PageContainer";
 import { trackPageView } from "../../Common/Analytics";
-import { getAboutMeThemeColor, getThemeColor, isMobileDevice } from "../../Common/Utils";
+import { getAboutMeThemeColor, isMobileDevice } from "../../Common/Utils";
 import { getBlogData } from "../../Common/Api";
 import sanitize from "sanitize-html";
 import { RoundCard, MiniRoundCard, Image } from "../../Components/Common/Common";
