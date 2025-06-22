@@ -6,17 +6,13 @@ import { useContext, useEffect, useState } from "react";
 import { MiniRoundCard } from "../../Components/Common/Common";
 import { trackPageView } from "../../Common/Analytics";
 import { getSpecialTextColorClass, getThemeColor, isMobileDevice } from "../../Common/Utils";
-import { PORTFOLIO_DATA_GRAPHQL_QUERY } from "../../Common/GraphQLQueries";
-import { getBlogData } from "../../Common/Api";
 import { ColorContext } from "../../Common/Context";
 import SubscribeModal from "../../Components/SubscribeModal";
 
-const PortfolioPage = () => {
+const PortfolioPage = ({ portfolioData }) => {
   const darkMode = useContext(ColorContext);
   const [projects, setProjects] = useState(true);
   const [paintings, setPaintings] = useState(false);
-  const [portfolio, setPortfolio] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [subscribe, setSubscribe] = useState(false);
   const handleClose = () => setSubscribe(false);
 
@@ -24,15 +20,6 @@ const PortfolioPage = () => {
     const PAGE_TITLE = "Portfolio";
     document.title = PAGE_TITLE;
     trackPageView(PAGE_TITLE);
-    setLoading(true);
-    getBlogData(PORTFOLIO_DATA_GRAPHQL_QUERY)
-      .then((data) => {
-        setLoading(false);
-        setPortfolio(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching portfolio data:", error);
-      });
   }, []);
 
   useEffect(() => {
@@ -80,12 +67,12 @@ const PortfolioPage = () => {
         </div>
       </div>
       <div class="d-flex flex-wrap mx-auto justify-content-between blog-container mt-3 pb-3">
-        { loading && 
+        { !portfolioData && 
           <div class="mx-auto">
             <div class="spinner-border" role="status" />
           </div>
         }
-        { projects && portfolio?.projects.map((project, index) => {
+        { projects && portfolioData?.projects.map((project, index) => {
             return (
               <MiniRoundCard 
                 key={index} 

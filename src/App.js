@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Routes, Route, HashRouter } from 'react-router-dom';
+import { Routes, Route, HashRouter, useLocation } from 'react-router-dom';
 import { 
   ROOT_PAGE_URL, 
   HOME_PAGE_URL, 
@@ -10,6 +10,9 @@ import {
   ABOUT_ME_PAGE_URL,
   APPLICATION_DARKMODE_KEY,
   UNSUBSCRIBE_PAGE_URL,
+  PORTFOLIO_DATA_KEY,
+  BLOG_SUMMARY_DATA_KEY,
+  RESUME_DATA_KEY,
 } from "./Common/Constants";
 import HomePage from "./Pages/Home/Home";
 import PortfolioPage from "./Pages/Portfolio/Portfolio";
@@ -22,6 +25,8 @@ import { ColorContext } from "./Common/Context";
 import PageContainer from "./Components/PageContainer";
 import UnsubscribePage from "./Pages/Unsubscribe/Unsubscribe";
 import Footer from './Components/Footer/Footer';
+import { getBlogData } from "./Common/Api";
+import { BLOG_DETAILS_GRAPHQL_QUERY, BLOG_SUMMARY_GRAPHQL_QUERY, PORTFOLIO_DATA_GRAPHQL_QUERY } from "./Common/GraphQLQueries";
 
 const RouteConfig = ({ children, darkMode, setDarkMode }) => 
   <ColorContext.Provider value={darkMode}>
@@ -34,9 +39,37 @@ function App() {
   const [darkMode, setDarkMode] = useState(
     JSON.parse(window.sessionStorage.getItem(APPLICATION_DARKMODE_KEY)) || false
   );
+  const [portfolioData, setPortfolioData] = useState(
+    JSON.parse(window.sessionStorage.getItem(PORTFOLIO_DATA_KEY)) || null
+  );
+  const [blogSummaryData, setBlogSummaryData] = useState(
+    JSON.parse(window.sessionStorage.getItem(BLOG_SUMMARY_DATA_KEY)) || null
+  )
+  const [resumeData, setResumeData] = useState(
+    JSON.parse(window.sessionStorage.getItem(RESUME_DATA_KEY)) || null
+  )
 
   useEffect(() => {
-    initializeAnalytics()
+    initializeAnalytics();
+    const pendingDataFetch = !portfolioData || !blogSummaryData || !resumeData;
+    if (pendingDataFetch || window.location.hash === `#${ROOT_PAGE_URL}` || window.location.hash === `#${HOME_PAGE_URL}`) {
+      // TODO: rename getBlogData to a generic name
+      const portfolioDataCall = getBlogData(PORTFOLIO_DATA_GRAPHQL_QUERY);
+      const blogSummaryDataCall = getBlogData(BLOG_SUMMARY_GRAPHQL_QUERY);
+      const resumeDataCall = getBlogData(BLOG_DETAILS_GRAPHQL_QUERY, { slug: "my-resume" });
+      Promise.all([portfolioDataCall, blogSummaryDataCall, resumeDataCall])
+        .then((values) => {
+          setPortfolioData(values[0]);
+          window.sessionStorage.setItem(PORTFOLIO_DATA_KEY, JSON.stringify(values[0]));
+          setBlogSummaryData(values[1]);
+          window.sessionStorage.setItem(BLOG_SUMMARY_DATA_KEY, JSON.stringify(values[1]));
+          setResumeData(values[2]);
+          window.sessionStorage.setItem(RESUME_DATA_KEY, JSON.stringify(values[2]));
+        })
+        .catch((error) => {
+          console.error("Error fetching blog data:", error);
+        });
+    }
   }, []);
 
   useEffect(() => {
@@ -72,7 +105,7 @@ function App() {
               path={PORTFOLIO_PAGE_URL} 
               element={
                 <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
-                  <PortfolioPage />
+                  <PortfolioPage portfolioData={portfolioData} />
                 </RouteConfig>
               } 
             />
@@ -80,7 +113,7 @@ function App() {
               path={BLOG_PAGE_URL} 
               element={
                 <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
-                  <BlogPage />
+                  <BlogPage blogSummaryData={blogSummaryData} />
                 </RouteConfig>
               } 
             />
@@ -96,7 +129,7 @@ function App() {
               path={RESUME_PAGE_URL} 
               element={
                 <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
-                  <ResumePage />
+                  <ResumePage resumeData={resumeData} />
                 </RouteConfig>
               } 
             />

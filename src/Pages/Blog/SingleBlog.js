@@ -10,9 +10,9 @@ import { RoundCard } from "../../Components/Common/Common";
 import { formatTimestamp, getThemeColor, isMobileDevice } from "../../Common/Utils";
 import { trackPageView } from "../../Common/Analytics";
 
-const SingleBlogPage = ({ customSlug = null }) => {
+const SingleBlogPage = ({ customData, customSlug }) => {
     let { slug } = useParams();
-    customSlug && (slug = customSlug);
+    customData && (slug = customSlug);
     const [loading, setLoading] = useState(false);
     const [blogData, setBlogData] = useState(null);
 
@@ -25,15 +25,20 @@ const SingleBlogPage = ({ customSlug = null }) => {
     }, [slug]);
 
     useEffect(() => {
-        setLoading(true);
-        getBlogData(BLOG_DETAILS_GRAPHQL_QUERY, { slug })
-          .then((data) => {
-              setBlogData(data.posts[0]);
-              setLoading(false);
-          })
-          .catch((error) => {
-              console.error("Error fetching blog data:", error);
-          });
+        if (!customData && slug) {
+          setLoading(true);
+          getBlogData(BLOG_DETAILS_GRAPHQL_QUERY, { slug })
+            .then((data) => {
+                setBlogData(data.posts[0]);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error("Error fetching blog data:", error);
+            });
+        } else if (customData) {
+          setLoading(false);
+          setBlogData(customData.posts[0]);
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [slug]);
 
