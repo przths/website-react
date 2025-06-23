@@ -63,6 +63,9 @@ export const SimpleButton = styled.button`
   @media (min-width: 500px) {
     padding: 14px 22px;
   }
+  @media (max-width: 450px) {
+    font-size: 14px;
+  }
 `
 
 export const SimpleButtonSelect = styled.button`

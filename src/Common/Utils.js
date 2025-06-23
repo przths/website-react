@@ -1,3 +1,5 @@
+import ReactGA from 'react-ga4';
+
 export function formatTimestamp(timestamp) {
     const date = new Date(timestamp);
     
@@ -72,4 +74,18 @@ export function sanitizeText(input) {
   const trimmed = input.trim();
   const sanitized = trimmed.replace(/[^\p{L}\d@._%+\-]/gu, '');
   return sanitized;
+}
+
+export function navigateWithAnalytics(specifiedPath, navigate) {
+  const onClick = () => navigate(specifiedPath);
+  return () => {
+    if (window.location.hostname !== "localhost") {
+      ReactGA.event({
+        category: "Navigation Bar",
+        action: "Navigation_Bar_Click",
+        label: specifiedPath,
+      });
+    };
+    onClick();
+  }
 }
