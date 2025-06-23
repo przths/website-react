@@ -25,12 +25,12 @@ const NavButton = (props) => {
 	);
 }
 
-const navDropdownButtons = (navigate) => 
+const navDropdownButtons = (navigate, isDarkMode) => 
   <NavDropdown
     id="nav-dropdown"
     title="Explore"
-    menuVariant="dark"
     className="ms-auto m-2"
+    menuVariant={isDarkMode ? 'dark' : 'light'}
     align="end"
   >
     <NavDropdown.Item onClick={navigateWithAnalytics(HOME_PAGE_URL, navigate)}>
@@ -96,7 +96,7 @@ const HomeHeader = ({ textColor, setDarkMode }) => {
           />
         </Navbar.Brand>
         <Nav className={`${isMobileDevice() ? 'flex-fill justify-content-center' : 'justify-content-end '}`}>
-          { isMobileDevice() ? navDropdownButtons(navigate) : navButtons({ textColor }) }
+          { isMobileDevice() ? navDropdownButtons(navigate, textColor === 'white') : navButtons({ textColor }) }
         </Nav>
       </Container>
     </Navbar>
