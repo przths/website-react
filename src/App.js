@@ -13,6 +13,7 @@ import {
   PORTFOLIO_DATA_KEY,
   BLOG_SUMMARY_DATA_KEY,
   RESUME_DATA_KEY,
+  ABOUT_ME_DATA_KEY,
 } from "./Common/Constants";
 import HomePage from "./Pages/Home/Home";
 import PortfolioPage from "./Pages/Portfolio/Portfolio";
@@ -26,7 +27,8 @@ import PageContainer from "./Components/PageContainer";
 import UnsubscribePage from "./Pages/Unsubscribe/Unsubscribe";
 import Footer from './Components/Footer/Footer';
 import { getBlogData } from "./Common/Api";
-import { BLOG_DETAILS_GRAPHQL_QUERY, BLOG_SUMMARY_GRAPHQL_QUERY, PORTFOLIO_DATA_GRAPHQL_QUERY } from "./Common/GraphQLQueries";
+import { ABOUT_ME_DATA_GRAPHQL_QUERY, BLOG_DETAILS_GRAPHQL_QUERY, BLOG_SUMMARY_GRAPHQL_QUERY, PORTFOLIO_DATA_GRAPHQL_QUERY } from "./Common/GraphQLQueries";
+import { set } from "lodash";
 
 const RouteConfig = ({ children, darkMode, setDarkMode }) => 
   <ColorContext.Provider value={darkMode}>
@@ -48,23 +50,30 @@ function App() {
   const [resumeData, setResumeData] = useState(
     JSON.parse(window.sessionStorage.getItem(RESUME_DATA_KEY)) || null
   )
+  const [aboutMeData, setAboutMeData] = useState(
+    JSON.parse(window.sessionStorage.getItem(ABOUT_ME_DATA_KEY)) || null
+  );
 
   useEffect(() => {
     initializeAnalytics();
-    const pendingDataFetch = !portfolioData || !blogSummaryData || !resumeData;
+    const pendingDataFetch = !portfolioData || !blogSummaryData || !resumeData || !aboutMeData;
     if (pendingDataFetch || window.location.hash === `#${ROOT_PAGE_URL}` || window.location.hash === `#${HOME_PAGE_URL}`) {
       // TODO: rename getBlogData to a generic name
       const portfolioDataCall = getBlogData(PORTFOLIO_DATA_GRAPHQL_QUERY);
       const blogSummaryDataCall = getBlogData(BLOG_SUMMARY_GRAPHQL_QUERY);
       const resumeDataCall = getBlogData(BLOG_DETAILS_GRAPHQL_QUERY, { slug: "my-resume" });
-      Promise.all([portfolioDataCall, blogSummaryDataCall, resumeDataCall])
+      const aboutMeDataCall = getBlogData(ABOUT_ME_DATA_GRAPHQL_QUERY, { slug: "about-me" });
+      Promise.all([portfolioDataCall, blogSummaryDataCall, resumeDataCall, aboutMeDataCall])
         .then((values) => {
+          // TODO: create separate handlers for following data setting
           setPortfolioData(values[0]);
           window.sessionStorage.setItem(PORTFOLIO_DATA_KEY, JSON.stringify(values[0]));
           setBlogSummaryData(values[1]);
           window.sessionStorage.setItem(BLOG_SUMMARY_DATA_KEY, JSON.stringify(values[1]));
           setResumeData(values[2]);
           window.sessionStorage.setItem(RESUME_DATA_KEY, JSON.stringify(values[2]));
+          setAboutMeData(values[3]);
+          window.sessionStorage.setItem(ABOUT_ME_DATA_KEY, JSON.stringify(values[3]));
         })
         .catch((error) => {
           console.error("Error fetching blog data:", error);
@@ -137,7 +146,7 @@ function App() {
               path={ABOUT_ME_PAGE_URL} 
               element={
                 <RouteConfig darkMode={darkMode} setDarkMode={setDarkMode}>
-                  <AboutMePage />
+                  <AboutMePage aboutMeData={aboutMeData} />
                 </RouteConfig>
               } 
             />
