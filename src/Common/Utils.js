@@ -47,6 +47,7 @@ export function getSpecialTextColorClass() {
     'background-image': 'linear-gradient(145deg, #ff416c, #8b5cf6)',
     'color': 'transparent',
     'background-clip': 'text',
+    'font-weight': 'bold',
   }
 }
 

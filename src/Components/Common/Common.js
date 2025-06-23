@@ -1,5 +1,5 @@
 import "./Common.css";
-import { formatTimestamp, getRandomBackgroundColor, getThemeColor } from "../../Common/Utils";
+import { formatTimestamp, getThemeColor } from "../../Common/Utils";
 import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import { isMobileDevice } from "../../Common/Utils";
@@ -12,6 +12,7 @@ export const Image = ({ src, className, width, height, maxWidth = '100%' }) => {
       width={width}
       height={height}
       style={{ 'width': maxWidth, 'height': 'auto' }}
+      rel="preload"
       loading="lazy"
       decoding="async"
       fetchPriority="high"

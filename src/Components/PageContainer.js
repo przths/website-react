@@ -10,7 +10,7 @@ const PageContainer = ({ children, setDarkMode }) => {
   return (
     <HomePageContainer textColor={colorClass}>
       <HomeHeader textColor={colorClass} setDarkMode={setDarkMode} />
-      {children}
+      { children }
     </HomePageContainer>
   );
 };

@@ -41,7 +41,7 @@ const NavButton = (props) => {
 	return (
 		<Nav.Link className='my-auto'>
 			<SimpleButton onClick={clickWithAnalytics} {...props}>
-				{homePathSet ? 'Home' : props.text}
+				{ homePathSet ? 'Home' : props.text }
 			</SimpleButton>
 		</Nav.Link>
 	);
@@ -63,24 +63,24 @@ const HomeHeader = ({ textColor, setDarkMode }) => {
         </Navbar.Brand>
         <Nav className={`${isMobileDevice() ? 'flex-fill justify-content-center' : 'justify-content-end '}`}>
           <NavButton
-              text="Portfolio"
-              textColor={textColor}
-              pathname={PORTFOLIO_PAGE_URL}
+            text="Portfolio"
+            textColor={textColor}
+            pathname={PORTFOLIO_PAGE_URL}
           />
           <NavButton
-              text="Blog"
-              textColor={textColor}
-              pathname={BLOG_PAGE_URL}
+            text="Blog"
+            textColor={textColor}
+            pathname={BLOG_PAGE_URL}
           />
           <NavButton
-              text="Resume"
-              textColor={textColor}
-              pathname={RESUME_PAGE_URL}
+            text="Resume"
+            textColor={textColor}
+            pathname={RESUME_PAGE_URL}
           />
           <NavButton
-              text="About me"
-              textColor={textColor}
-              pathname={ABOUT_ME_PAGE_URL}
+            text="About me"
+            textColor={textColor}
+            pathname={ABOUT_ME_PAGE_URL}
           />
         </Nav>
       </Container>
